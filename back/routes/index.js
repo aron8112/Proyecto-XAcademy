@@ -11,6 +11,7 @@ const app = Express();
 
 const userRouter = require('./user');
 const courseRouter = require('./course');
+const publicationRouter = require('./publication');
 // use=
 app.use('/ping', (req, res) => {
   res.json({
@@ -19,6 +20,7 @@ app.use('/ping', (req, res) => {
 });
 app.use('/courses', courseRouter);
 app.use('/users', userRouter);
+app.use('/publication', publicationRouter);
 app.get('/onlyadmin', isAdminMdw, (req, res) => {
   res.send({
     msg: 'Aca solo llegan los admins',
