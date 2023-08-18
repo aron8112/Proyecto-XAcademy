@@ -11,6 +11,8 @@ const app = Express();
 
 const userRouter = require('./user');
 const courseRouter = require('./course');
+const postRouter = require('./post');
+
 // use=
 app.use('/ping', (req, res) => {
   res.json({
@@ -18,6 +20,7 @@ app.use('/ping', (req, res) => {
   });
 });
 app.use('/courses', courseRouter);
+app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.get('/onlyadmin', isAdminMdw, (req, res) => {
   res.send({
