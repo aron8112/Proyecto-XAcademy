@@ -33,13 +33,22 @@
         <div class="col">
             <div class="mb-4">
                 <label for="password" class="form-label"> Password</label>
-                <input type="password" class="form-control" name="password" [(ngModel)]="model.password" required>
+                <input type="password" class="form-control" name="password" placeholder="Password" required
+                    [(ngModel)]="model.password" minlength="6" #password="ngModel" required>
+                <div *ngIf="password.dirty || password.touched" class="alert">
+                    <small *ngIf="password.errors?.['required']" class="alert alert-danger" role="alert">
+                        Por favor inserte su password.
+                    </small>
+                    <small *ngIf="password.errors?.['minlength']" class="alert alert-danger" role="alert">
+                        Recuerde que su password debe tener al menos 6 caracteres.
+                    </small>
+                </div>
             </div>
         </div>
         <div class="col">
             <div class="mb-4">
                 <label for="pass" class="form-label"> Confirmar password</label>
-                <input type="password" class="form-control" required id="password2">
+                <input type="password" class="form-control" placeholder="Repita su password" id="password2" required>
             </div>
         </div>
     </div>

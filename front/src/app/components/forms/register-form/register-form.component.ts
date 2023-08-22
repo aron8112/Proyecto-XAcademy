@@ -56,7 +56,7 @@ export class RegisterFormComponent implements OnInit
       error: (error) =>
       {
         console.error(error)
-        console.log(`email: ${body.email} and password: ${body.password}`)
+        // console.log(`email: ${body.email} and password: ${body.password}`)
       },
       complete: () => console.log(`email: ${body.email} and password: ${body.password}`)
     })
