@@ -52,6 +52,28 @@ const getOneUserCont = (req, res) => {
   });
 };
 
+const saveAttendanceCont = async (req, res) => {
+  const { userid, courseid } = req.params;
+  try {
+    const updateUser = await UserServices.saveAttendanceServ(userid, courseid);
+    if (updateUser) {
+      res.status(200).send({
+        msg: 'Attendance saved',
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
-  createUserCont, loginUserCont, modifUserCont, deleteUserCont, getAllUserCont, getOneUserCont,
+  createUserCont,
+  loginUserCont,
+  modifUserCont,
+  deleteUserCont,
+  getAllUserCont,
+  getOneUserCont,
+  saveAttendanceCont,
 };

@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
+const crypto = require('crypto');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Courses', [{
+      id: crypto.randomUUID(),
       courseName: 'Acupuntura',
       courseStartDate: '2023-08-01',
       courseEndDate: '2023-10-01',
