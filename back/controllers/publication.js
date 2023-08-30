@@ -2,7 +2,7 @@ const { PublicationServices } = require('../services');
 
 const getAllPublication = async (req, res) => {
   try {
-    const getAll = await PublicationServices.getAllCourses();
+    const getAll = await PublicationServices.getAllPublication();
     res.status(200).send({
       payload: getAll,
     });

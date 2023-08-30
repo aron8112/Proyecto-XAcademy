@@ -20,7 +20,7 @@ app.use('/ping', (req, res) => {
 });
 app.use('/courses', courseRouter);
 app.use('/users', userRouter);
-app.use('/publication', publicationRouter);
+app.use('/publications', publicationRouter);
 app.get('/onlyadmin', isAdminMdw, (req, res) => {
   res.send({
     msg: 'Aca solo llegan los admins',
