@@ -4,6 +4,10 @@ import { HomeComponent } from './modules/pages/home/home.component';
 import { CursosComponent } from './modules/pages/cursos/cursos.component';
 import { PreciosComponent } from './modules/pages/precios/precios.component';
 import { CarritoComponent } from './modules/pages/carrito/carrito.component';
+import { authGuard } from './core/guards/auth.guard';
+
+// import { AuthGuard } from './core/guards/auth.guard';
+// import { RoleGuardService } from "./core/guards/auth-roles.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },

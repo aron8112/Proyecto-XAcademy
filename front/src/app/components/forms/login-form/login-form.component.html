@@ -8,7 +8,7 @@
     <div class="mb-4">
         <label for="correo" class="form-label">Email</label>
         <input type="email" class="form-control" name="email" [(ngModel)]="model.email" placeholder="example@email.com"
-            #email="ngModel" required>
+            #email="ngModel" required autofocus>
         <div *ngIf="email.dirty || email.touched || email.invalid" class="alert">
             <small *ngIf="email.errors?.['required']" class="alert alert-danger" role="alert">
                 Debe ingresar un email válido.
@@ -18,7 +18,7 @@
     <div class="mb-4">
         <label for="pass" class="form-label"> Password</label>
         <input type="password" name="password" class="form-control" [(ngModel)]="model.password" placeholder="123456"
-            required minlength="6" #password="ngModel" required>
+           minlength="6" #password="ngModel" required>
         <div *ngIf="password.dirty || password.touched" class="alert">
             <small *ngIf="password.errors?.['required']" class="alert alert-danger" role="alert">
                 Por favor inserte su password.
