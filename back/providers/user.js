@@ -76,7 +76,42 @@ const loginProv = async (user) => {
   }
 };
 
+const getUserProv = async (id) => {
+  try {
+    const user = await User.findByPk(id);
+    if (user) {
+      return user.id;
+    }
+  } catch (error) {
+    throw new Error('Cannot find User');
+  }
+  // try {
+  //   const course = await Course.findByPk(idCourse);
+  //   if (course) {
+  //     const attendance = await User.update({ attendance: +1 }, { where: idUser });
+  //     if (attendance) {
+  //       return true;
+  //     }
+  //     throw new Error('Attendance: Unable to generate attendance');
+  //   }
+  //   throw new Error('Course: Unable to find course');
+  // } catch (error) {
+  //   throw new Error('Unable to process the request Save Attendance');
+  // }
+};
+
+const updateUser = async (id) => {
+  const user = await User.findByPk(id);
+  if (user) {
+    await user.increment('attendance');
+    return true;
+  }
+  throw new Error();
+};
+
 module.exports = {
   newUserProv,
   loginProv,
+  getUserProv,
+  updateUser,
 };

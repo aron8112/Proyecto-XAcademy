@@ -11,7 +11,9 @@ const app = Express();
 
 const userRouter = require('./user');
 const courseRouter = require('./course');
+const publicationRouter = require('./publication');
 const postRouter = require('./post');
+
 
 // use=
 app.use('/ping', (req, res) => {
@@ -22,6 +24,7 @@ app.use('/ping', (req, res) => {
 app.use('/courses', courseRouter);
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
+app.use('/publications', publicationRouter);
 app.get('/onlyadmin', isAdminMdw, (req, res) => {
   const token = req.headers.authorization.split(' ');
   console.log(token[1]);

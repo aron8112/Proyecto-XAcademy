@@ -48,8 +48,18 @@ const newCourseProv = async (course) => {
   }
 };
 
+const updateCourse = async (id) => {
+  const course = await Course.findByPk(id);
+  if (course) {
+    await course.increment('attendance');
+    return true;
+  }
+  throw new Error();
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   newCourseProv,
+  updateCourse,
 };
