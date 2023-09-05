@@ -1,61 +1,123 @@
-<div class="text-center">
-    <!-- LOGOTIPO -->
-    <img src="../../../../assets/345270431_766231688363871_4341753288289659002_n.jpg" width="100" alt="logotipo">
-</div>
-<h2 class="font-weight-bold text-center py-5" id="titleForm">Registrate para acceder a todos los beneficios de la
-    incubadora NOC</h2>
-<!-- LOGIN -->
-<form #form="ngForm">
-    <div class="row">
-        <div class="col">
-            <div class="mb-4">
-                <label for="firstName" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="firstName" placeholder="Nombre"
-                    [(ngModel)]="model.firstName" required>
-            </div>
-        </div>
-        <div class="col">
-            <div class="mb-4">
-                <label for="lastName" class="form-label">Apellido</label>
-                <input type="text" class="form-control" name="lastName" placeholder="Apellido"
-                    [(ngModel)]="model.lastName" required>
-            </div>
-        </div>
-        <div class="col">
-            <div class="mb-4">
-                <label for="correo" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" placeholder="E-mail" [(ngModel)]="model.email"
-                    required>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="mb-4">
-                <label for="password" class="form-label"> Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Password" required
-                    [(ngModel)]="model.password" minlength="6" #password="ngModel" required>
-                <div *ngIf="password.dirty || password.touched" class="alert">
-                    <small *ngIf="password.errors?.['required']" class="alert alert-danger" role="alert">
-                        Por favor inserte su password.
-                    </small>
-                    <small *ngIf="password.errors?.['minlength']" class="alert alert-danger" role="alert">
-                        Recuerde que su password debe tener al menos 6 caracteres.
-                    </small>
+<main>
+    <!-- SECCION LOGIN -->
+    <section class="main_section">
+        <div class="container-fluid" id="contentForm">
+            <!-- SECCION LOGIN -->
+            <div class="row align-items-stretch mt-4" style="display: flex; justify-content: center;">
+                <div class="col bg_sections bg d-none d-lg-block col-md-6 col-lg-6 col-xl-7 ">
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="card text-center container-fluid bg-white shadow px-0">
+                        <!-- IMAGEN FONDO -->
+                        <div class="text-center">
+                            <!-- LOGOTIPO -->
+                            <img src="../../../../assets/345270431_766231688363871_4341753288289659002_n.jpg"
+                                width="100" alt="logotipo">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h2 class="font-weight-bold text-center py-5" id="titleForm"><b>Registrate</b><br> para
+                                    acceder a todos los <br>beneficios de la <br><b>Incubadora del N.O.C.</b></h2>
+                                <!-- LOGIN -->
+                                <form #form="ngForm">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-4">
+                                                <label for="firstName" class="form-label">Nombre</label>
+                                                <input type="text" class="form-control" name="firstName"
+                                                    placeholder="Nombre" [(ngModel)]="model.firstName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-4">
+                                                <label for="lastName" class="form-label">Apellido</label>
+                                                <input type="text" class="form-control" name="lastName"
+                                                    placeholder="Apellido" [(ngModel)]="model.lastName" required>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-4">
+                                                <label for="correo" class="form-label">Email</label>
+                                                <input type="email" class="form-control" name="email"
+                                                    [(ngModel)]="model.email" placeholder="example@email.com"
+                                                    #email="ngModel" required>
+                                                <div *ngIf="email.dirty || email.touched || email.invalid"
+                                                    class="alert">
+                                                    <small *ngIf="email.errors?.['required'] && email.touched"
+                                                        class="alert alert-danger" role="alert">
+                                                        Debe ingresar un email.
+                                                    </small>
+                                                    <small *ngIf="email.errors?.['invalid'] && email.touched"
+                                                        class="alert alert-danger" role="alert">
+                                                        Debe ingresar un email válido.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="mb-4">
+                                                <label for="password" class="form-label"> Password</label>
+                                                <input type="password" class="form-control" name="password"
+                                                    placeholder="Password" required [(ngModel)]="model.password"
+                                                    minlength="6" #password="ngModel" required>
+                                                <div *ngIf="password.dirty || password.touched" class="alert">
+                                                    <small *ngIf="password.errors?.['required']"
+                                                        class="alert alert-danger" role="alert">
+                                                        Por favor inserte su password.
+                                                    </small>
+                                                    <small *ngIf="password.errors?.['minlength']"
+                                                        class="alert alert-danger" role="alert">
+                                                        Su password debe tener al menos 6 caracteres.
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="mb-4">
+                                                <label for="password2" class="form-label"> Confirmar password</label>
+                                                <input type="password2" class="form-control" name="password2"
+                                                    placeholder="Confirmar Password" required
+                                                    [(ngModel)]="model.password2" minlength="6" #password2="ngModel"
+                                                    required>
+                                                <div *ngIf="password.dirty || password.touched" class="alert">
+                                                    <small *ngIf="password2.errors?.['required']"
+                                                        class="alert alert-danger" role="alert">
+                                                        Por favor repita su password.
+                                                    </small>
+                                                    <br>
+                                                    <small *ngIf="password2.errors?.['minlength']"
+                                                        class="alert alert-danger" role="alert">
+                                                        Su password debe tener al menos 6 caracteres.
+                                                    </small>
+                                                    <br>
+                                                    <small *ngIf="password.value != password2.value"
+                                                        class="alert alert-danger" role="alert">
+                                                        Repita correctamente su contraseña
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" name="submit" class="btn btn-primary"
+                                            (click)="signUp(form)" [disabled]="form.invalid">Registrar</button>
+                                    </div>
+                                </form>
+                                <br>
+                                <hr>
+                                <div class="card-footer text-body-secondary">
+                                    <p>¿Ya tenés cuenta? <a class="link" aria-current="page" routerLink='/login'>Inicia
+                                            sesión</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="mb-4">
-                <label for="pass" class="form-label"> Confirmar password</label>
-                <input type="password" class="form-control" placeholder="Repita su password" id="password2" required>
-            </div>
-        </div>
-    </div>
-    <div class="d-grid">
-        <button type="submit" name="submit" class="btn btn-primary" (click)="signUp(form)">Registrar</button>
-    </div>
-</form>
-<div class="my-3">
-    <span>¿Ya tenes cuenta? <a class="pe-auto" (click)="changeEstado()">Iniciar sesion</a></span>
-</div>
+    </section>
+</main>
+<br>

@@ -1,0 +1,13 @@
+*{
+    margin:0;
+}
+.bg{
+    background-image: url(../../../../assets/345270431_766231688363871_4341753288289659002_n.jpg);
+    background-position-x: -150px;
+}
+.bg_sections{
+  height: auto;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+}

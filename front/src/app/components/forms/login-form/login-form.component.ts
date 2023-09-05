@@ -66,13 +66,7 @@ export class LoginFormComponent implements OnInit
     })
   }
 
-  logout(): void
-  {
-    this.router.navigate(['/login']).then(() =>
-    {
-      localStorage.removeItem('auth_token');
-    });
-  }
+
 }
 
 // constructor(private http: HttpClient, private route: Router) {}

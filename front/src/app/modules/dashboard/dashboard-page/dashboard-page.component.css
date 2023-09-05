@@ -1,0 +1,22 @@
+section{
+    padding: 20px;
+    margin: 5px;
+}
+.mainimage{
+    width: 300px; /* Puedes ajustar el ancho del contenedor según tus necesidades */
+    height: 200px; /* Puedes ajustar la altura del contenedor según tus necesidades */
+    position: relative;
+    overflow: hidden;
+  }
+  .contenedor img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  
+  
+  
+  
+    
