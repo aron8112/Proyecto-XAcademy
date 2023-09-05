@@ -4,6 +4,7 @@ export type User = {
     lastName?: string,
     email: string,
     password: string,
+    password2?: string,
     course?: string,
     attendance?: number,
     enrolled?: boolean,

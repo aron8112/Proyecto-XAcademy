@@ -17,6 +17,9 @@ const createUserCont = async (req, res) => {
 const loginUserCont = async (req, res) => {
   try {
     const foundUser = await UserServices.loginServ(req.body);
+    res.set({
+      Authorization: `Bearer ${foundUser}`,
+    });
     res.status(200).send({
       foundUser,
     });

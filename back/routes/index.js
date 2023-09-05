@@ -26,6 +26,8 @@ app.use('/posts', postRouter);
 app.use('/users', userRouter);
 app.use('/publications', publicationRouter);
 app.get('/onlyadmin', isAdminMdw, (req, res) => {
+  const token = req.headers.authorization.split(' ');
+  console.log(token[1]);
   res.send({
     msg: 'Aca solo llegan los admins',
   });
