@@ -29,7 +29,7 @@ export class AuthService
         this.router.navigate(['/home']).then(() =>
         {
             localStorage.removeItem('auth_token');
-            this.apiService.deleteHeader('Authorization')
+            // this.apiService.deleteHeader('Authorization')
         });
     }
 
