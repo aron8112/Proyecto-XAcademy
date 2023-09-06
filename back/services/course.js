@@ -18,8 +18,15 @@ const createCourseServ = async (course) => {
   return newCourse;
 };
 
+const modCourseServ = async (id, body) => {
+  const modCourse = await CourseProvider.modifyCourse(id, body);
+
+  return modCourse;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   createCourseServ,
+  modCourseServ,
 };

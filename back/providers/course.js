@@ -66,9 +66,18 @@ const updateCourse = async (id) => {
   throw new Error();
 };
 
+const modifyCourse = async (id, body) => {
+  const modCourse = await Course.update(body, { where: { id } });
+  if (!modCourse) {
+    throw new Error();
+  }
+  return modCourse;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   newCourseProv,
   updateCourse,
+  modifyCourse,
 };
