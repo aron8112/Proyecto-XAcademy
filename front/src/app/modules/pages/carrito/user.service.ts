@@ -2,28 +2,28 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { ApiService } from 'src/app/core/http/api.service';
-import { Icourses } from 'src/app/core/interfaces/Icourses';
+import { User } from 'src/app/core/interfaces/user';
 
 @Injectable({
     providedIn: 'root'
 })
-export class CoursesService
+export class UserService
 {
     constructor(private apiService: ApiService) { }
 
-    getAllCourses(): Observable<Icourses[]>
+    getAllUser(): Observable<User[]>
     {
-        return this.apiService.get<Icourses[]>('/courses/all')
+        return this.apiService.get<User[]>('/users/all')
             .pipe(
-                catchError(this.handleError<Icourses[]>('getCourses', [])),
+                catchError(this.handleError<User[]>('getUser', [])),
             );
     }
 
-    getOneCourse(id: Params)
+    getOneUser(id: Params): Observable<User>
     {
-        return this.apiService.get<Icourses>(`/courses/${id}`)
+        return this.apiService.get<User>(`/users/${id}`)
             .pipe(
-                catchError(this.handleError<Icourses>('getCourse')),
+                catchError(this.handleError<User>('getUser')),
             );
     }
 

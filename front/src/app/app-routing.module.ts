@@ -7,6 +7,7 @@ import { CarritoComponent } from './modules/pages/carrito/carrito.component';
 import { authGuard } from './core/guards/auth.guard';
 import { LoginFormComponent } from './components/forms/login-form/login-form.component';
 import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
+import { CursoComponent } from './components/commons/curso/curso.component';
 
 // import { AuthGuard } from './core/guards/auth.guard';
 // import { RoleGuardService } from "./core/guards/auth-roles.guard";
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'carrito', component: CarritoComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: RegisterFormComponent },
+  { path: 'miperfil/:id', component: CarritoComponent },
+  { path: 'cursos/details/:id', component: CursoComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
   // ,
   // { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)}

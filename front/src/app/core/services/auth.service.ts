@@ -33,4 +33,13 @@ export class AuthService
         });
     }
 
+    setUserId(): JSON
+    {
+        const token: any = localStorage.getItem('auth_token');
+        const getdata: string[] = token.split('.')
+        const data: JSON = JSON.parse(window.atob(getdata[1]))
+
+        return data
+    }
+
 }

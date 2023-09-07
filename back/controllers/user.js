@@ -53,9 +53,7 @@ const getOneUserCont = async (req, res) => {
   const { id } = req.params;
   try {
     const userfound = await UserServices.getOneUserServ(id);
-    res.status(200).send({
-      userfound,
-    });
+    res.status(200).send(userfound);
   } catch (error) {
     res.status(500).send({
       error: error.message,

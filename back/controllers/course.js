@@ -19,9 +19,7 @@ const getCourse = async (req, res) => {
     if (!course) {
       res.status(404).json({ action: 'getCourse', error: 'Course not found' });
     } else {
-      res.status(200).send({
-        payload: course,
-      });
+      res.status(200).send(course);
     }
   } catch (error) {
     res.status(400).json({
