@@ -32,9 +32,9 @@
 
                         </li>
                         <li class="nav-item m-3">
-                            <a class="nav-link" *ngIf="!isLoggedIn()" aria-current="page" routerLink='/login'>Login /
+                            <a class="nav-link" *ngIf="!(isLoggedIn() | async)" aria-current="page" routerLink='/login'>Login /
                                 Registrarse</a>
-                            <a class="nav-link" *ngIf="isLoggedIn()" aria-current="page" (click)='logout()'>Cerrar
+                            <a class="nav-link" *ngIf="isLoggedIn() | async" aria-current="page" (click)='logout()'>Cerrar
                                 sesión</a>
                         </li>
                         <li class="nav-item m-3 mt-4">
