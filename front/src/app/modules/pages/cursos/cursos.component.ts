@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
 import { CoursesService } from './cursos.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-cursos',
@@ -12,12 +13,14 @@ import { Router } from '@angular/router';
 export class CursosComponent implements OnInit
 {
   courses: Icourses[] = [];
+  id: any
   // courseId: string[] = [];
-  constructor(private courseService: CoursesService, private router: Router) { }
+  constructor(private courseService: CoursesService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void
   {
     this.getAllCourses();
+    this.id = this.getRole()
   }
 
   getAllCourses(): void
@@ -33,4 +36,8 @@ export class CursosComponent implements OnInit
     this.router.navigate([`/cursos/details/${id}`]);
   }
 
+  getRole(): JSON
+  {
+    return this.authService.setUserId()
+  }
 }

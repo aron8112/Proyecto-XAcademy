@@ -27,6 +27,12 @@ export class CoursesService
             );
     }
 
+    createCourse(url: string, body?: any): Observable<Icourses>
+    {
+        return this.apiService.post<Icourses>(url, body).pipe(
+            catchError(this.handleError<Icourses>('newCourse')),
+        );
+    }
     private handleError<T>(operation = 'operation', result?: T)
     {
         return (error: any): Observable<T> =>

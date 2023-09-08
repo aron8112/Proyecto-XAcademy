@@ -1,1 +1,145 @@
-<p>create-course works!</p>
+<div class="container-fluid" style="margin: 20px; display: flex; justify-content: center;">
+    <div class="row">
+        <!-- <div class="col-md-10 offset-md-3  bg-white shadow px-0"
+            style="margin: 20px; display: flex; justify-content: center;"> -->
+        <div class="card text-center shadow px-0 w-75 mb-3"
+            style="margin: 20px; display: flex; justify-content: center;">
+            <div class="card-header">
+                <div class="row" style="display: flex; justify-content: center;">
+                    <!-- <div class="col-md-10 bg-white shadow px-0" style="margin: 5px; display: flex; justify-content: center;"> -->
+                    <div class="card-header">
+                        <h1 class="card-title text-center"> Crear un nuevo curso</h1>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <form #newCourse="ngForm">
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseName">Título del curso</span>
+                                        <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                                            aria-describedby="Título" id="courseName" [(ngModel)]="model.courseName"
+                                            #courseName="ngModel" name="courseName" required>
+
+                                        <small *ngIf="courseName.errors?.['required'] && courseName.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡Debe ingresar un título para el curso!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseStartDate">Fecha de Inicio del
+                                            curso</span>
+                                        <input type="text" class="form-control" placeholder="Inicio del curso"
+                                            aria-label="Inicio del curso" aria-describedby="Inicio del curso"
+                                            id="courseStartDate" [(ngModel)]="model.courseStartDate"
+                                            #courseStartDate="ngModel" name="courseStartDate" required>
+
+                                        <small *ngIf="courseStartDate.errors?.['required'] && courseStartDate.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡Debe ingresar la fecha de inicio!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseEndDate">Fecha de Finalización del
+                                            curso</span>
+                                        <input type="text" class="form-control" placeholder="Finalización del curso"
+                                            aria-label="Finalización del curso"
+                                            aria-describedby="Finalización del curso" id="courseEndDate"
+                                            [(ngModel)]="model.courseEndDate" #courseEndDate="ngModel"
+                                            name="courseEndDate" required>
+
+                                        <small *ngIf="courseEndDate.errors?.['required'] && courseEndDate.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡Debe ingresar la fecha de finalización!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                    <div class="form-text" id="basic-addon4"> Ejemplo: 31-12-2023</div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="description">Descripción del curso</span>
+                                        <textarea type="text" class="form-control" placeholder="Hasta 250 palabras"
+                                            aria-label="Descripción" aria-describedby="Descripción" id="description"
+                                            [(ngModel)]="model.description" #description="ngModel" name="description"
+                                            required></textarea>
+
+                                        <small *ngIf="description.errors?.['required'] && description.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡No se olvide de agregar una descripción!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="shortDescription">Descripción corta del
+                                            curso</span>
+                                        <textarea type="text" class="form-control" placeholder="Hasta 50 palabras"
+                                            aria-label="Descripción" aria-describedby="Descripción"
+                                            id="shortDescription" [(ngModel)]="model.shortDescription"
+                                            #shortDescription="ngModel" name="shortDescription" required></textarea>
+                                        <small *ngIf="shortDescription.errors?.['required'] && shortDescription.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡No se olvide de agregar una descripción más corta para presentar!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="amountclasses">Cantidad de clases</span>
+                                        <input type="text" class="form-control"
+                                            placeholder="cuántas clases tendrá el curso" aria-label="clases"
+                                            aria-describedby="clases" id="amountclasses"
+                                            [(ngModel)]="model.amountclasses" #amountclasses="ngModel"
+                                            name="amountclasses" required>
+                                        <small *ngIf="amountclasses.errors?.['required'] && amountclasses.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡No se olvide de agregar cuántas clases serán!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="horarios">Horario de clases</span>
+                                        <input type="text" class="form-control" placeholder="Día/s, de hh:mm a hh:mm"
+                                            aria-label="clases" aria-describedby="clases" id="horarios"
+                                            [(ngModel)]="model.schedule" #schedule="ngModel" name="schedule" required>
+                                        <small *ngIf="schedule.errors?.['required'] && schedule.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡No se olvide de agregar los horarios en que se dictará el curso!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+                                    </div>
+                                </li>
+                            </form>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-secondary me-md-2" type="button"
+                                [routerLink]="['/cursos']">Descartar</button>
+                            <button class="btn btn-primary" type="button" (click)="createNewCourse(newCourse)"
+                                [disabled]="newCourse.invalid">Guardar nuevo curso</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>
