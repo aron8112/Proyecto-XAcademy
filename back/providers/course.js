@@ -30,6 +30,10 @@ const newCourseProv = async (course) => {
     courseName,
     courseStartDate,
     courseEndDate,
+    description,
+    shortDescription,
+    amountclasses,
+    schedule,
   } = course;
 
   // eslint-disable-next-line no-useless-catch
@@ -41,6 +45,10 @@ const newCourseProv = async (course) => {
       courseName,
       courseStartDate,
       courseEndDate,
+      description,
+      shortDescription,
+      amountclasses,
+      schedule,
     });
     return newCourse;
   } catch (error) {
@@ -50,6 +58,7 @@ const newCourseProv = async (course) => {
 
 const updateCourse = async (id) => {
   const course = await Course.findByPk(id);
+  console.log(course);
   if (course) {
     await course.increment('attendance');
     return true;
@@ -57,9 +66,18 @@ const updateCourse = async (id) => {
   throw new Error();
 };
 
+const modifyCourse = async (id, body) => {
+  const modCourse = await Course.update(body, { where: { id } });
+  if (!modCourse) {
+    throw new Error();
+  }
+  return modCourse;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   newCourseProv,
   updateCourse,
+  modifyCourse,
 };

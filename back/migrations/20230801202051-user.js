@@ -7,12 +7,12 @@ module.exports = {
       lastName: Sequelize.STRING,
       email: Sequelize.STRING,
       password: Sequelize.STRING,
-      course: Sequelize.STRING,
-      attendance: Sequelize.INTEGER,
-      enrolled: Sequelize.BOOLEAN,
       isAdmin: Sequelize.BOOLEAN,
       isTeacher: Sequelize.BOOLEAN,
-    });
+      createdAt: Sequelize.DATE,
+      updatedAt: Sequelize.DATE,
+      deletedAt: Sequelize.DATE,
+    }).then(() => queryInterface.addIndex('Users', ['id']));
   },
 
   async down(queryInterface, Sequelize) {

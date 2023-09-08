@@ -1,5 +1,5 @@
 <main>
-    <div class="container px-4 py-5" id="featured-3">
+    <!-- <div class="container px-4 py-5" id="featured-3">
         <h2 class="pb-2 border-bottom">Últimas Novedades</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <app-publicacion></app-publicacion>
@@ -25,20 +25,44 @@
                 </ul>
             </nav>
         </div>
-    </div>
+    </div> -->
+    <br><br>
     <div class="container px-4" id="custom-cards">
-        <h2 class="pb-2 border-bottom">Cursos Disponibles</h2>
+        <h2 class="pb-4 border-bottom">Cursos Disponibles</h2>
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
-              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div *ngFor="let course of courses" class="card-group">
+                        <div class="card rounded-4 shadow-lg">
+                            <div class="card-header text-center">
+                                <h3 class="fw-bold">{{course.courseName}}</h3>
+                            </div>
+                            <ul class="list-group list-group-flush"
+                                style="display:flex; justify-content: flex-start; align-content: center;">
+                                <li class="list-group-item">{{course.shortDescription}}</li>
+                                <li class="list-group-item"><u>Comienza:</u> {{course.courseStartDate | date:'dd - MM -
+                                    yyyy'
+                                    }}
+                                </li>
+                                <li class="list-group-item"><u>Día:</u> {{course.schedule}}</li>
+                                <li class="list-group-item"><u>Total clases:</u> {{course.amountclasses}}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a class="btn btn-primary me-md-2" [routerLink]="['/cursos/details', course.id]">Ver
+                                        más</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <app-curso></app-curso>
                 <app-curso></app-curso>
                 <app-curso></app-curso>
                 <app-curso></app-curso>
                 <app-curso></app-curso>
-                <app-curso></app-curso>
-                <app-curso></app-curso>
-              </div>
+                <app-curso></app-curso> -->
             </div>
-          </div>
+        </div>
     </div>
 </main>

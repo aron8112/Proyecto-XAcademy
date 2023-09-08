@@ -2,8 +2,12 @@ const { Model } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
   class Course extends Model {
-    static associate() {
-      // define association here
+    static associate(models) {
+      this.belongsToMany(models.User, {
+        through: models.UserCourse, // Utiliza el modelo UserCourse como tabla intermedia
+        foreignKey: 'courseId', // Nombre de la clave foránea en UserCourse que hace referencia a Course
+        as: 'users', // Alias para acceder a los usuarios desde un curso
+      });
     }
   }
   // Initialize the model
@@ -26,23 +30,39 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.TEXT,
+      defaultValue: '',
+    },
+    shortDescription: {
+      type: DataTypes.TEXT,
+      defaultValue: '',
+    },
     attendance: {
       type: DataTypes.INTEGER,
       defaultValue: 0,
     },
-    deleted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+    amountclasses: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    schedule: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     visualized: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Course',
-    createdAt: false,
-    updatedAt: false,
+    tableName: 'Course',
+    timestamps: true,
+    paranoid: true,
   });
   return Course;
 };

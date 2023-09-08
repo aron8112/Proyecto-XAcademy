@@ -26,15 +26,17 @@
                         <li class="nav-item m-3">
                             <a class="nav-link" aria-current="page" routerLink='/precios'>Nuestros Planes</a>
                         </li>
-                        <li class="nav-item m-3" *ngIf="isLoggedIn()">
-                            <a class="nav-link" aria-current="page" routerLink='/home'>Mi
+                        <li class="nav-item m-3" *ngIf="isLoggedIn() | async">
+                            <a class="nav-link" aria-current="page" [routerLink]="['/miperfil', id.id]">Mi
                                 perfil</a>
 
                         </li>
                         <li class="nav-item m-3">
-                            <a class="nav-link" *ngIf="!(isLoggedIn() | async)" aria-current="page" routerLink='/login'>Login /
+                            <a class="nav-link" *ngIf="!(isLoggedIn() | async) " aria-current="page"
+                                routerLink='/login'>Login /
                                 Registrarse</a>
-                            <a class="nav-link" *ngIf="isLoggedIn() | async" aria-current="page" (click)='logout()'>Cerrar
+                            <a class="nav-link" *ngIf="isLoggedIn() | async" aria-current="page"
+                                (click)='logout()'>Cerrar
                                 sesión</a>
                         </li>
                         <li class="nav-item m-3 mt-4">

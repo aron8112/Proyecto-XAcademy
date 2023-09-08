@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-vars */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Publications', {
       id: Sequelize.STRING,
       title: Sequelize.STRING,
-      description: Sequelize.STRING,
+      description: Sequelize.TEXT,
       image: Sequelize.STRING,
       start_date: Sequelize.DATE,
       finish_date: Sequelize.DATE,

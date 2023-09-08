@@ -49,10 +49,16 @@ const getAllUserCont = (_req, res) => {
   });
 };
 
-const getOneUserCont = (req, res) => {
-  res.status(200).send({
-    msg: `buscar el user de id: ${req.params.id}`,
-  });
+const getOneUserCont = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const userfound = await UserServices.getOneUserServ(id);
+    res.status(200).send(userfound);
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+    });
+  }
 };
 
 const saveAttendanceCont = async (req, res) => {
@@ -71,6 +77,38 @@ const saveAttendanceCont = async (req, res) => {
   }
 };
 
+const updateEnrollmentCont = async (req, res) => {
+  const { userid, courseid } = req.params;
+  try {
+    const updateUser = await UserServices.saveUpdateEnrollServ(userid, courseid);
+    if (updateUser) {
+      res.status(200).send({
+        msg: 'Enrollment changed',
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+    });
+  }
+};
+
+const signupInCourse = async (req, res) => {
+  const { userid, courseid } = req.params;
+  try {
+    const register = await UserServices.signupInCourseServ(userid, courseid);
+    if (register) {
+      res.status(200).send({
+        msg: 'The registration was succesful',
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createUserCont,
   loginUserCont,
@@ -79,4 +117,6 @@ module.exports = {
   getAllUserCont,
   getOneUserCont,
   saveAttendanceCont,
+  updateEnrollmentCont,
+  signupInCourse,
 };
