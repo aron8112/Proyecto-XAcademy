@@ -3,6 +3,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, of } from 'rxjs';
 import { ApiService } from '../http/api.service';
 import { Router } from '@angular/router';
+import { User } from '../interfaces/user';
 
 @Injectable({
     providedIn: 'root'
@@ -33,13 +34,47 @@ export class AuthService
         });
     }
 
-    setUserId(): JSON
+    setUserId(): any | null
     {
         const token: any = localStorage.getItem('auth_token');
+        if (!token)
+        {
+            return null
+        }
         const getdata: string[] = token.split('.')
-        const data: JSON = JSON.parse(window.atob(getdata[1]))
+        const data: any = JSON.parse(window.atob(getdata[1]))
 
         return data
+    }
+
+    getAdminRole(): boolean
+    {
+        const data = this.setUserId()
+        if (!data.isAdmin)
+        {
+            return false
+        }
+        return true
+    }
+
+    getTeacherRole(): boolean
+    {
+        const data = this.setUserId()
+        if (!data.isAdmin)
+        {
+            return false
+        }
+        return true
+    }
+
+    getAdminAndTeacherRole(): boolean
+    {
+        const data = this.setUserId()
+        if (!data.isAdmin && !data.isTeacher)
+        {
+            return false
+        }
+        return true
     }
 
 }

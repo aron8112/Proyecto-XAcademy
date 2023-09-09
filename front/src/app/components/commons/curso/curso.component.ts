@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { CoursesService } from 'src/app/modules/pages/cursos/cursos.service';
 
 @Component({
@@ -25,9 +26,10 @@ export class CursoComponent implements OnInit
     visualized: new Boolean
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService) { }
+  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService, private authService: AuthService) { }
 
   id: any;
+  isTeacherOrAdmin: any
 
   ngOnInit(): void
   {
@@ -37,6 +39,7 @@ export class CursoComponent implements OnInit
     });
 
     this.getCourseInfo(this.id)
+    this.isTeacherOrAdmin = this.canModify()
   }
 
   getCourseInfo(id: any): void
@@ -46,5 +49,10 @@ export class CursoComponent implements OnInit
       this.course = course;
       console.log(this.course)
     })
+  }
+
+  canModify(): boolean
+  {
+    return this.authService.getAdminAndTeacherRole()
   }
 }

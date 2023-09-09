@@ -30,34 +30,34 @@ export class CreateCourseComponent implements OnInit
 
   createNewCourse(newCourse: NgForm): void
   {
+    const startDate = new Date(newCourse.value.courseStartDate)
+    const endDate = new Date(newCourse.value.courseEndDate)
     const body = {
       courseName: newCourse.value.courseName,
-      courseStartDate: newCourse.value.courseStartDate,
-      courseEndDate: newCourse.value.courseEndDate,
+      courseStartDate: startDate.toISOString().slice(0, 19).replace('T', ' '),
+      courseEndDate: endDate.toISOString().slice(0, 19).replace('T', ' '),
       description: newCourse.value.description,
       shortDescription: newCourse.value.shortDescription,
       amountclasses: newCourse.value.amountclasses,
       schedule: newCourse.value.schedule
     }
 
-    window.alert(JSON.stringify(body))
-    console.log(body)
-    // this.courseService.createCourse('/courses/create', body).subscribe({
-    //   next: () =>
-    //   {
-    //     window.alert('Curso agregado correctamente')
-    //     this.router.navigate(['cursos'])
-    //   },
-    //   error: (error) =>
-    //   {
-    //     let errorMessage = 'An error occured retrieving data';
-    //     if (error)
-    //     {
-    //       errorMessage = `Error: code ${error.message}`;
-    //     }
-    //     window.alert('Datos incorrectos');
-    //     throw Error(errorMessage);
-    //   },
-    // })
+    this.courseService.createCourse('/courses/create', body).subscribe({
+      next: () =>
+      {
+        window.alert('Curso agregado correctamente')
+        this.router.navigate(['cursos'])
+      },
+      error: (error) =>
+      {
+        let errorMessage = 'An error occured retrieving data';
+        if (error)
+        {
+          errorMessage = `Error: code ${error.message}`;
+        }
+        window.alert('Datos incorrectos');
+        throw Error(errorMessage);
+      },
+    })
   }
 }

@@ -36,7 +36,7 @@ export class CursosComponent implements OnInit
     this.router.navigate([`/cursos/details/${id}`]);
   }
 
-  getRole(): JSON
+  getRole(): JSON | null
   {
     return this.authService.setUserId()
   }

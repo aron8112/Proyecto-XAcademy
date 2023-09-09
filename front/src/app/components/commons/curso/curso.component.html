@@ -9,6 +9,8 @@
       <div class="col-md-8">
         <div class="card-body">
           <h1 class="card-title">{{course.courseName}}</h1>
+          <button class="btn btn-primary" type="button" *ngIf="isTeacherOrAdmin"
+            [routerLink]="['/cursos/modifcourse', course.id]">Modificar</button>
           <hr>
           <h4 class="card-text">Descripción del curso</h4>
           <p class="card-text">{{course.description}}</p>
@@ -23,6 +25,7 @@
         <div class="card-footer">
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-secondary me-md-2" type="button" [routerLink]="['/cursos']">Volver</button>
+
             <button class="btn btn-primary" type="button" [routerLink]="['/']">Inscribirse</button>
           </div>
         </div>

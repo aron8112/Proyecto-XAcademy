@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit
     this.authService.logout()
   }
 
-  getId(): JSON
+  getId(): JSON | null
   {
     const data = this.authService.setUserId()
 
