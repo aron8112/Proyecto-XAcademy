@@ -28,10 +28,16 @@ export class CreateCourseComponent implements OnInit
   {
   }
 
+  convertDate(date: any)
+  {
+    const newdate = date.split('-');
+    return new Date(newdate[2], newdate[1], newdate[0])
+  }
   createNewCourse(newCourse: NgForm): void
   {
-    const startDate = new Date(newCourse.value.courseStartDate)
-    const endDate = new Date(newCourse.value.courseEndDate)
+
+    const startDate = this.convertDate(newCourse.value.courseStartDate)
+    const endDate = this.convertDate(newCourse.value.courseEndDate)
     const body = {
       courseName: newCourse.value.courseName,
       courseStartDate: startDate.toISOString().slice(0, 19).replace('T', ' '),
