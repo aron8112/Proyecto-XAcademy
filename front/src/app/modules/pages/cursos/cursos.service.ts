@@ -33,6 +33,14 @@ export class CoursesService
             catchError(this.handleError<Icourses>('newCourse')),
         );
     }
+
+    signUpInCourse(url: string): Observable<Icourses>
+    {
+        return this.apiService.post<Icourses>(url).pipe(
+            catchError(this.handleError<Icourses>('newCourse')),
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T)
     {
         return (error: any): Observable<T> =>

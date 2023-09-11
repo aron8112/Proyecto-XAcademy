@@ -35,13 +35,13 @@
           <h3 class="card-title">Datos</h3>
           <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Nombre</span>
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" class="form-control" placeholder="{{user.firstName}}" aria-label="button-addon2"
               aria-describedby="button-addon2" value="{{user.firstName}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Apellido</span>
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
+            <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido"
               aria-describedby="button-addon2" value="{{user.lastName}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
@@ -52,6 +52,20 @@
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
           <h3 class="card-title">Cursos</h3>
+          <table id="coursesCSS">
+            <tr>
+              <th>Curso</th>
+              <th>Horario</th>
+              <th>Asistencias</th>
+              <th>Matrícula</th>
+            </tr>
+            <tr *ngFor="let course of courses">
+              <td>{{course.courseName}}</td>
+              <td>{{course.schedule}}</td>
+              <td>{{course.amountclasses}}</td>
+              <td>{{course.visualized}}</td>
+            </tr>
+          </table>
         </div>
 
 

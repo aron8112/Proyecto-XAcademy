@@ -55,4 +55,38 @@ export class CursoComponent implements OnInit
   {
     return this.authService.getAdminAndTeacherRole()
   }
+
+  getId(token: any)
+  {
+    const data = token.split('.');
+    return data[1];
+  }
+
+  getUserId()
+  {
+    const userId = localStorage.getItem('id');
+
+    return userId
+  }
+
+  registerInCourse(): void
+  {
+    const userId = this.getUserId();
+    this.courseService.signUpInCourse(`/users/${userId}/signupcourse/${this.id}`).subscribe({
+      next: () =>
+      {
+        window.alert('Se realizó correctamente la inscripción')
+      },
+      error: (error) =>
+      {
+        let errorMessage = 'An error occured retrieving data';
+        if (error)
+        {
+          errorMessage = `Error: code ${error.message}`;
+        }
+        window.alert('Datos incorrectos');
+        throw Error(errorMessage);
+      },
+    })
+  }
 }

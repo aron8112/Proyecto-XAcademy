@@ -36,6 +36,12 @@ export class LoginFormComponent implements OnInit
     }
   }
 
+  getId(token: any)
+  {
+    const data = token.split('.');
+    return data[1];
+  }
+
   logIn(form: NgForm): void
   {
     localStorage.removeItem('auth_token')
@@ -49,8 +55,11 @@ export class LoginFormComponent implements OnInit
       next: (response) =>
       {
         localStorage.setItem('auth_token', response.foundUser);
-        this.apiService.setHeader('Authorization', `Bearer ${response.foundUser}`)
-        console.log(response)
+        const data2 = this.getId(response.foundUser);
+        const data3 = window.atob(data2)
+        const data4 = JSON.parse(data3)
+        const userId = data4.id
+        localStorage.setItem('id', userId)
       },
       error: (error) =>
       {

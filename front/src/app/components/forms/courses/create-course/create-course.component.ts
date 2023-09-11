@@ -3,6 +3,8 @@ import { CoursesService } from "../../../../modules/pages/cursos/cursos.service"
 import { Router } from '@angular/router';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
 import { NgForm } from '@angular/forms';
+import { ApiService } from 'src/app/core/http/api.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-create-course',
@@ -12,7 +14,7 @@ import { NgForm } from '@angular/forms';
 export class CreateCourseComponent implements OnInit
 {
 
-  constructor(private courseService: CoursesService, private router: Router) { }
+  constructor(private courseService: CoursesService, private router: Router, private apiService: ApiService) { }
 
   model: any = {
     courseName: '',
@@ -36,8 +38,11 @@ export class CreateCourseComponent implements OnInit
   createNewCourse(newCourse: NgForm): void
   {
 
+    //cambiar el formato de la fecha
     const startDate = this.convertDate(newCourse.value.courseStartDate)
     const endDate = this.convertDate(newCourse.value.courseEndDate)
+
+    //enviar el body
     const body = {
       courseName: newCourse.value.courseName,
       courseStartDate: startDate.toISOString().slice(0, 19).replace('T', ' '),
@@ -48,6 +53,12 @@ export class CreateCourseComponent implements OnInit
       schedule: newCourse.value.schedule
     }
 
+
+    //enviar el header con el token
+    const token = localStorage.getItem('auth_token');
+    this.apiService.setHeader('Authorization', `Bearer ${token}`)
+
+    //hacer la petición POST 
     this.courseService.createCourse('/courses/create', body).subscribe({
       next: () =>
       {
