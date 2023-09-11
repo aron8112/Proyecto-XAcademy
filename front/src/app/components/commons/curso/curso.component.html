@@ -9,8 +9,11 @@
       <div class="col-md-8">
         <div class="card-body">
           <h1 class="card-title">{{course.courseName}}</h1>
-          <button class="btn btn-primary" type="button" *ngIf="isTeacherOrAdmin"
-            [routerLink]="['/cursos/modifcourse', course.id]">Modificar</button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="button" *ngIf="isTeacherOrAdmin"
+              [routerLink]="['/cursos/modifcourse', course.id]">Modificar</button>
+            <a class="btn btn-danger" type="a" *ngIf="isAdmin" (click)="delete(course.id)">Eliminar</a>
+          </div>
           <hr>
           <h4 class="card-text">Descripción del curso</h4>
           <p class="card-text">{{course.description}}</p>
@@ -26,7 +29,15 @@
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-secondary me-md-2" type="button" [routerLink]="['/cursos']">Volver</button>
 
-            <button class="btn btn-primary" type="button" (click)="registerInCourse()">Inscribirse</button>
+            <button class="btn btn-primary" type="button" (click)="registerInCourse()"
+              [disabled]="!isAuth()">Inscribirse</button>
+          </div>
+          <hr>
+          <div class="d-grid gap-2">
+            <small *ngIf="!isAuth()" class="alert alert-danger alert-dismissible fade show" role="alert">
+              Registrate para anotarte <a class="btn btn-primary" routerLink="/login">AQUÍ</a>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </small>
           </div>
         </div>
       </div>

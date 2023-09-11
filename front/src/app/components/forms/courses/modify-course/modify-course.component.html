@@ -1,1 +1,59 @@
-<p>modify-course works!</p>
+<div class="container-fluid" style="margin: 20px; display: flex; justify-content: center;">
+    <div class="row">
+        <!-- <div class="col-md-10 offset-md-3  bg-white shadow px-0"
+            style="margin: 20px; display: flex; justify-content: center;"> -->
+        <div class="card text-center shadow px-0 w-75 mb-3"
+            style="margin: 20px; display: flex; justify-content: center;">
+            <div class="card-header">
+                <div class="row" style="display: flex; justify-content: center;">
+                    <!-- <div class="col-md-10 bg-white shadow px-0" style="margin: 5px; display: flex; justify-content: center;"> -->
+                    <div class="card-header">
+                        <h1 class="card-title text-center">Modificar curso</h1>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <form #modifyCourse="ngForm">
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseName">Título del curso</span>
+                                        <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                                            aria-describedby="Título" id="courseName" [(ngModel)]="model.courseName"
+                                            #courseName="ngModel" name="courseName" value="{{model.courseName}}">
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseStartDate">Fecha de inicio</span>
+                                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                                            aria-describedby="Inicio" id="courseStartDate"
+                                            [(ngModel)]="model.courseStartDate" #courseStartDate="ngModel"
+                                            name="courseStartDate" value="model.courseStartDate">
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="courseEndDate">Fecha de finalización</span>
+                                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                                            aria-describedby="Inicio" id="courseEndDate"
+                                            [(ngModel)]="model.courseEndDate" #courseEndDate="ngModel"
+                                            name="courseEndDate" value="{{model.courseEndDate | date:'dd-MM-yyyy' }}">
+                                    </div>
+                                </li>
+                            </form>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-secondary me-md-2" type="button"
+                                [routerLink]="['/cursos']">Descartar</button>
+                            <!-- <button class="btn btn-primary" type="button" 
+                            (click)="createNewCourse(newCourse)"
+                                [disabled]="newCourse.invalid">Guardar nuevo curso</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</div>

@@ -41,6 +41,17 @@ export class CoursesService
         );
     }
 
+    deleteCourse(url: string): Observable<any> 
+    {
+        return this.apiService.delete(url).pipe(
+            catchError(this.handleError<Icourses>('deleteCourse')))
+    }
+
+    modifyCourse(url: string, body: any): Observable<Icourses>
+    {
+        return this.apiService.post(url, body)
+    }
+
     private handleError<T>(operation = 'operation', result?: T)
     {
         return (error: any): Observable<T> =>

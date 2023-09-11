@@ -59,9 +59,25 @@ const modCourse = async (req, res) => {
   }
 };
 
+const deleteCourse = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedCourse = await CourseServices.deleteCourseServ(id);
+    res.status(200).send({
+      deletedCourse: 'Delete was succesfull',
+    });
+  } catch (error) {
+    res.status(400).json({
+      action: 'deleteCourse',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCourses,
   getCourse,
   createCourseCont,
   modCourse,
+  deleteCourse,
 };

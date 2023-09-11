@@ -24,9 +24,16 @@ const modCourseServ = async (id, body) => {
   return modCourse;
 };
 
+const deleteCourseServ = async (id) => {
+  const deletedCourse = await CourseProvider.deleteCourse(id);
+
+  return deletedCourse;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   createCourseServ,
   modCourseServ,
+  deleteCourseServ,
 };

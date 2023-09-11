@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/core/http/api.service';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { CoursesService } from 'src/app/modules/pages/cursos/cursos.service';
@@ -12,6 +13,7 @@ import { CoursesService } from 'src/app/modules/pages/cursos/cursos.service';
 })
 export class CursoComponent implements OnInit
 {
+  id: any;
   course: Icourses = {
     id: new String,
     courseName: new String,
@@ -26,10 +28,10 @@ export class CursoComponent implements OnInit
     visualized: new Boolean
   }
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService, private authService: AuthService) { }
+  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService, private authService: AuthService, private router: Router, private apiService: ApiService) { }
 
-  id: any;
   isTeacherOrAdmin: any
+  isAdmin: any
 
   ngOnInit(): void
   {
@@ -40,6 +42,7 @@ export class CursoComponent implements OnInit
 
     this.getCourseInfo(this.id)
     this.isTeacherOrAdmin = this.canModify()
+    this.isAdmin = this.hasAdminRole()
   }
 
   getCourseInfo(id: any): void
@@ -87,6 +90,42 @@ export class CursoComponent implements OnInit
         window.alert('Datos incorrectos');
         throw Error(errorMessage);
       },
+    })
+  }
+
+  isAuth()
+  {
+    return this.authService.isAuthenticated()
+  }
+
+  hasAdminRole()
+  {
+    return this.authService.getAdminRole()
+  }
+
+  delete(id: any)
+  {
+
+    //enviar el header con el token
+    const token = localStorage.getItem('auth_token');
+    this.apiService.setHeader('Authorization', `Bearer ${token}`)
+
+    this.courseService.deleteCourse(`/courses/deletecourse/${id}`).subscribe({
+      next: () =>
+      {
+        alert('Curso eliminado correctamente')
+        this.router.navigate(['/cursos'])
+      },
+      error: (error) =>
+      {
+        let errorMessage = 'An error occured retrieving data';
+        if (error)
+        {
+          errorMessage = `Error: code ${error.message}`;
+        }
+        window.alert('Datos incorrectos');
+        throw Error(errorMessage);
+      }
     })
   }
 }

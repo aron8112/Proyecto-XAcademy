@@ -74,10 +74,19 @@ const modifyCourse = async (id, body) => {
   return modCourse;
 };
 
+const deleteCourse = async (id) => {
+  const delCourse = await Course.destroy({ where: { id } });
+  if (!delCourse) {
+    throw new Error();
+  }
+  return true;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   newCourseProv,
   updateCourse,
   modifyCourse,
+  deleteCourse,
 };

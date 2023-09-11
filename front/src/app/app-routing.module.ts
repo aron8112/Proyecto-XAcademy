@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cursos', component: CursosComponent },
   { path: 'precios', component: PreciosComponent },
-  { path: 'carrito', canActivate: [authGuard], component: CarritoComponent },
+  // { path: 'carrito', canActivate: [authGuard], component: CarritoComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: RegisterFormComponent },
   { path: 'miperfil/:id', canActivate: [authGuard], component: CarritoComponent },
