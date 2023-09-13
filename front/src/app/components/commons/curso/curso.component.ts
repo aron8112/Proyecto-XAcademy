@@ -1,9 +1,11 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ApiService } from 'src/app/core/http/api.service';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { UserService } from 'src/app/modules/pages/carrito/user.service';
 import { CoursesService } from 'src/app/modules/pages/cursos/cursos.service';
 
 @Component({
@@ -27,8 +29,14 @@ export class CursoComponent implements OnInit
     deleted: new Boolean,
     visualized: new Boolean
   }
+  user: any
 
-  constructor(private activatedRoute: ActivatedRoute, private courseService: CoursesService, private authService: AuthService, private router: Router, private apiService: ApiService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private courseService: CoursesService,
+    private authService: AuthService,
+    private router: Router,
+    private apiService: ApiService,
+    private userService: UserService) { }
 
   isTeacherOrAdmin: any
   isAdmin: any
@@ -65,7 +73,7 @@ export class CursoComponent implements OnInit
     return data[1];
   }
 
-  getUserId()
+  getUserId(): any
   {
     const userId = localStorage.getItem('id');
 
@@ -76,9 +84,9 @@ export class CursoComponent implements OnInit
   {
     const userId = this.getUserId();
     this.courseService.signUpInCourse(`/users/${userId}/signupcourse/${this.id}`).subscribe({
-      next: () =>
+      next: (response) =>
       {
-        window.alert('Se realizó correctamente la inscripción')
+        this.user = response
       },
       error: (error) =>
       {
@@ -87,8 +95,7 @@ export class CursoComponent implements OnInit
         {
           errorMessage = `Error: code ${error.message}`;
         }
-        window.alert('Datos incorrectos');
-        throw Error(errorMessage);
+        console.log(errorMessage)
       },
     })
   }

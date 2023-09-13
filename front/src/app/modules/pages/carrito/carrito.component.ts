@@ -17,15 +17,8 @@ import { Icourses } from 'src/app/core/interfaces/Icourses';
 export class CarritoComponent implements OnInit
 {
   id: any
-  user: User = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    isAdmin: false,
-    isTeacher: false
-  }
-  courses: Icourses[] = []
+  user: any
+  courses: any
   constructor(private userService: UserService,
     private authService: AuthService,
     private courseService: CoursesService,
@@ -36,9 +29,8 @@ export class CarritoComponent implements OnInit
     this.activatedRoute.paramMap.subscribe(paramMap =>
     {
       this.id = paramMap.get('id')
+      this.getUser(this.authService.setUserId().id)
     });
-    this.getUser(this.id)
-    this.getAllCourses()
   }
 
   getUser(id: any): void
@@ -49,12 +41,9 @@ export class CarritoComponent implements OnInit
     })
   }
 
-  getAllCourses(): void
+  getCoursesByStudent(): void
   {
-    this.courseService.getAllCourses().subscribe(courses =>
-    {
-      this.courses = courses;
-    });
+    this.user.Courses = this.courses
   }
 
   ngOnDestroy(): void

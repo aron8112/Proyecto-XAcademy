@@ -67,11 +67,15 @@ const updateCourse = async (id) => {
 };
 
 const modifyCourse = async (id, body) => {
-  const modCourse = await Course.update(body, { where: { id } });
-  if (!modCourse) {
-    throw new Error();
+  const course = await Course.findOne({ where: { id } });
+  if (course) {
+    const modCourse = await course.update(body, { where: { id } });
+    if (!modCourse) {
+      throw new Error('no se pudo actualizar');
+    }
+    return modCourse;
   }
-  return modCourse;
+  throw new Error('no existe el curso');
 };
 
 const deleteCourse = async (id) => {

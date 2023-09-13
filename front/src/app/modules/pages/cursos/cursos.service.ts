@@ -49,7 +49,7 @@ export class CoursesService
 
     modifyCourse(url: string, body: any): Observable<Icourses>
     {
-        return this.apiService.post(url, body)
+        return this.apiService.put(url, body)
     }
 
     private handleError<T>(operation = 'operation', result?: T)

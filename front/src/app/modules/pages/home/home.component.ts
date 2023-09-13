@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../cursos/cursos.service';
 import { Icourses } from 'src/app/core/interfaces/Icourses';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,11 @@ export class HomeComponent implements OnInit
   mostrarDiv: boolean = true;
   courses: Icourses[] = []
 
-  constructor(private courseService: CoursesService) { }
+  constructor(private courseService: CoursesService, private authService: AuthService) { }
 
   ngOnInit(): void
   {
+    this.authService.setUserId()
     this.showCourses()
   }
 
@@ -32,5 +34,7 @@ export class HomeComponent implements OnInit
       this.courses = courses;
     });
   }
+
+
 
 }

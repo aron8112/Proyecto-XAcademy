@@ -36,7 +36,8 @@
                                         <input type="text" class="form-control" placeholder="Inicio del curso"
                                             aria-label="Inicio del curso" aria-describedby="Inicio del curso"
                                             id="courseStartDate" [(ngModel)]="model.courseStartDate"
-                                            #courseStartDate="ngModel" name="courseStartDate" required>
+                                            #courseStartDate="ngModel" name="courseStartDate" required
+                                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
 
                                         <small *ngIf="courseStartDate.errors?.['required'] && courseStartDate.touched"
                                             class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -53,7 +54,8 @@
                                             aria-label="Finalización del curso"
                                             aria-describedby="Finalización del curso" id="courseEndDate"
                                             [(ngModel)]="model.courseEndDate" #courseEndDate="ngModel"
-                                            name="courseEndDate" required>
+                                            name="courseEndDate" required
+                                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
 
                                         <small *ngIf="courseEndDate.errors?.['required'] && courseEndDate.touched"
                                             class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { ApiService } from 'src/app/core/http/api.service';
 import { User } from 'src/app/core/interfaces/user';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -15,7 +16,7 @@ export class LoginFormComponent implements OnInit
   @Output() newItemEvent = new EventEmitter<boolean>();
   @Input() estado: boolean | undefined;
 
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private apiService: ApiService, private router: Router, private authService: AuthService) { }
 
   model: User = {
     email: '',
@@ -60,6 +61,7 @@ export class LoginFormComponent implements OnInit
         const data4 = JSON.parse(data3)
         const userId = data4.id
         localStorage.setItem('id', userId)
+        this.authService.setUserId()
       },
       error: (error) =>
       {

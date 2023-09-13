@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable, of } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { ApiService } from '../http/api.service';
 import { Router } from '@angular/router';
 import { User } from '../interfaces/user';
@@ -11,6 +11,7 @@ import { User } from '../interfaces/user';
 export class AuthService
 {
 
+    private userIdSubject: Subject<string> = new Subject<string>()
     /*Para revisar 
     public jwtHelper: JwtHelperService,*/
     constructor(private apiService: ApiService, private router: Router) { }  // ...
@@ -30,6 +31,7 @@ export class AuthService
         this.router.navigate(['/home']).then(() =>
         {
             localStorage.removeItem('auth_token');
+            localStorage.removeItem('id');
             // this.apiService.deleteHeader('Authorization')
         });
     }
@@ -43,10 +45,14 @@ export class AuthService
         }
         const getdata: string[] = token.split('.')
         const data: any = JSON.parse(window.atob(getdata[1]))
-
+        // this.userIdSubject.next(data.id)
         return data
     }
 
+    getUserId(): Observable<string>
+    {
+        return this.userIdSubject.asObservable()
+    }
     getAdminRole(): boolean
     {
         const data = this.setUserId()

@@ -1,54 +1,55 @@
 <div class="container">
   <main style="margin: 20px; display: flex; justify-content: center;">
 
-    <div class="card text-center">
+    <div class="card">
       <div class="card-header">
-        <h3>Bienvenido {{user.firstName }} {{user.lastName}}</h3>
+        <h3>Bienvenido {{user[0].firstName }} {{user[0].lastName}}</h3>
       </div>
       <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin" routerLink="/cursos/create">Crear curso</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Crear curso</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin || user.isTeacher" [routerLink]="['/cursos']">Modificar
+            <a class="nav-link" *ngIf="user[0].isAdmin || user[0].isTeacher" [routerLink]="['/cursos']">Modificar
               cursos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin" routerLink="/cursos/create">Crear publicación</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Crear publicación</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin" routerLink="/cursos/create">Modificar publicación</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Modificar publicación</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin || user.isTeacher" routerLink="/cursos/create">Asistencias</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin || user[0].isTeacher" routerLink="/cursos/create">Asistencias</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user.isAdmin" routerLink="/cursos/create">Pagos</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Pagos</a>
           </li>
         </ul>
       </div>
       <div class="card-body">
-        <p *ngIf="user.isAdmin">Desde aquí se puede modificar todos los cursos y publicaciones, además de ver todos los
+        <p *ngIf="user[0].isAdmin">Desde aquí se puede modificar todos los cursos y publicaciones, además de ver todos
+          los
           cursos disponibles y usuarios</p>
-        <div *ngIf="!user.isAdmin || !user.isTeacher">
+        <div *ngIf="!user[0].isAdmin || !user[0].isTeacher">
           <h3 class="card-title">Datos</h3>
           <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Nombre</span>
-            <input type="text" class="form-control" placeholder="{{user.firstName}}" aria-label="button-addon2"
-              aria-describedby="button-addon2" value="{{user.firstName}}">
+            <input type="text" class="form-control" placeholder="{{user[0].firstName}}" aria-label="button-addon2"
+              aria-describedby="button-addon2" value="{{user[0].firstName}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Apellido</span>
             <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido"
-              aria-describedby="button-addon2" value="{{user.lastName}}">
+              aria-describedby="button-addon2" value="{{user[0].lastName}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="addon-wrapping">Email</span>
-            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-              aria-describedby="button-addon2" value="{{user.email}}">
+            <input type="text" class="form-control" placeholder="Recipient's user[0]name"
+              aria-label="Recipient's user[0]name" aria-describedby="button-addon2" value="{{user[0].email}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
           <h3 class="card-title">Cursos</h3>
@@ -58,12 +59,15 @@
               <th>Horario</th>
               <th>Asistencias</th>
               <th>Matrícula</th>
+              <th></th>
             </tr>
-            <tr *ngFor="let course of courses">
+            <tr *ngFor="let course of user[0].Courses">
               <td>{{course.courseName}}</td>
               <td>{{course.schedule}}</td>
-              <td>{{course.amountclasses}}</td>
-              <td>{{course.visualized}}</td>
+              <td>{{course.UserCourse.attendance}}</td>
+              <td *ngIf="course.UserCourse.enrolled === true">PAGADA</td>
+              <td *ngIf="course.UserCourse.enrolled === false">PENDIENTE</td>
+              <td *ngIf="course.UserCourse.enrolled === false"><button class="btn btn-secondary">Pagar</button></td>
             </tr>
           </table>
         </div>

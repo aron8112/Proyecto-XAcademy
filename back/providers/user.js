@@ -3,7 +3,7 @@
 /* eslint-disable no-useless-catch */
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const { User, UserCourse } = require('../models');
+const { User, UserCourse, Course } = require('../models');
 const {
   tokenSign,
 } = require('../middleware/token');
@@ -105,52 +105,12 @@ const updateUserEnrollment = async (id) => {
 };
 
 async function getOneUserInfo(id) {
-  const user = await User.findByPk(id);
-  return user;
-  // try
-  // {
-  //   // Buscar al usuario por su ID
-  //   const user = await User.findByPk(id);
-
-  //   if (!user) {
-  //     return null; // El usuario no fue encontrado
-  //   }
-
-  //   let userCourses;
-  //   try {
-  //     // Utilizar la tabla intermedia UserCourse para obtener los cursos del usuario
-  //     userCourses = await UserCourse.findAll({
-  //       where: { userId: user.id }, // Filtrar por el ID del usuario
-  //       // Incluir la asociación con Course y seleccionar solo las columnas necesarias
-  //       include: [{ model: Course, attributes: ['courseName', 'id'] }],
-  //     });
-  //   } catch (eagerLoadingError) {
-  //     // Capturar el error específico relacionado con la falta de asociación
-  //     if (eagerLoadingError.name === 'SequelizeEagerLoadingError') {
-  //       console.error(
-  // 'Error de carga ansiosa (Eager Loading Error):', eagerLoadingError.message);
-  //       return null; // Puedes manejar el error de la forma que desees
-  //     }
-  //     throw eagerLoadingError; // Relanzar otros errores relacionados con la consulta
-  //   }
-
-  //   // Mapear los resultados para obtener cursos en el formato deseado
-  //   const coursesAssociated = userCourses.map((userCourse) => ({
-  //     courseName: userCourse.Course.courseName,
-  //     courseId: userCourse.Course.id,
-  //   }));
-
-  //   // Construir el objeto de resultado
-  //   const result = {
-  //     user: user.toJSON(), // Convertir el usuario a JSON si es necesario
-  //     coursesAssociated,
-  //   };
-
-  //   return result;
-  // } catch (error) {
-  //   console.error('Error al obtener cursos asociados al usuario:', error);
-  //   throw error;
-  // }
+  try {
+    const user = await User.findAll({ where: { id }, include: [{ model: Course, as: 'Courses' }] });
+    return user;
+  } catch (error) {
+    throw Error;
+  }
 }
 
 module.exports = {

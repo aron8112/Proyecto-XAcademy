@@ -48,7 +48,7 @@ const modCourse = async (req, res) => {
   try {
     const modifyCourse = await CourseServices.modCourseServ(id, req.body);
     res.status(200).json({
-      body: req.body,
+      modifyCourse,
       modifiedCourse: 'Modification/s was/were succesfull',
     });
   } catch (error) {
