@@ -14,7 +14,10 @@ import { UserService } from './user.service';
 export class CarritoComponent implements OnInit
 {
   id: any
+
+
   user: any
+  
   constructor(private userService: UserService, private authService: AuthService, private apiService: ApiService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void
