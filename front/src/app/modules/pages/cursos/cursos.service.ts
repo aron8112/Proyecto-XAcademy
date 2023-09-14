@@ -27,6 +27,31 @@ export class CoursesService
             );
     }
 
+    createCourse(url: string, body?: any): Observable<Icourses>
+    {
+        return this.apiService.post<Icourses>(url, body).pipe(
+            catchError(this.handleError<Icourses>('newCourse')),
+        );
+    }
+
+    signUpInCourse(url: string): Observable<Icourses>
+    {
+        return this.apiService.post<Icourses>(url).pipe(
+            catchError(this.handleError<Icourses>('newCourse')),
+        );
+    }
+
+    deleteCourse(url: string): Observable<any> 
+    {
+        return this.apiService.delete(url).pipe(
+            catchError(this.handleError<Icourses>('deleteCourse')))
+    }
+
+    modifyCourse(url: string, body: any): Observable<Icourses>
+    {
+        return this.apiService.put(url, body)
+    }
+
     private handleError<T>(operation = 'operation', result?: T)
     {
         return (error: any): Observable<T> =>

@@ -12,6 +12,7 @@ import { CreateCourseComponent } from './components/forms/courses/create-course/
 import { ModifyCourseComponent } from './components/forms/courses/modify-course/modify-course.component';
 import { ModifyPublicationsComponent } from './components/forms/publications/modify-publications/modify-publications.component';
 import { CreatePublicationsComponent } from './components/forms/publications/create-publications/create-publications.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CreatePublicationsComponent } from './components/forms/publications/cre
     MaterialModule,
     LayoutModule,
     PagesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

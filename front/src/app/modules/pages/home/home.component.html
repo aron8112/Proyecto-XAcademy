@@ -19,7 +19,35 @@
             </div>
         </div>
     </section> -->
-    <section>
-        <app-dashboard-page></app-dashboard-page>
+    <section style="margin: 20px;">
+        <h2>Cursos disponibles</h2>
+        <hr>
+        <div id="showAllCourses" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-indicators">
+                <button *ngFor="let course of courses; let i = index" type="button" data-bs-target="#showAllCourses"
+                    [attr.data-bs-slide-to]="i" aria-current="true" aria-label="..." [ngClass]="{'active': i == 0}">
+                </button>
+            </div>
+
+            <div class="carousel-inner">
+                <div *ngFor="let course of courses; let i = index" class="carousel-item" [ngClass]="{'active': i == 0}">
+                    <img src="../../../../assets/sunset.jpg" class="d-block w-100" alt="imagen" style="height: 450px;">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>{{course.courseName}}</h3>
+                        <small>{{course.shortDescription}}</small>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#showAllCourses" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#showAllCourses" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
     </section>
 </main>

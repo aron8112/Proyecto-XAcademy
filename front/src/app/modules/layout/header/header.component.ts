@@ -27,10 +27,17 @@ export class HeaderComponent implements OnInit
     this.authService.logout()
   }
 
-  getId(): JSON
+  getId(): void
   {
-    const data = this.authService.setUserId()
-
-    return data
+    return this.authService.setUserId()
+    // this.authService.getUserId().subscribe((userId: string) =>
+    // {
+    //   this.id = userId
+    // })
   }
+  ngOnDestroy(): void
+  {
+    this.id = ''
+  }
+
 }

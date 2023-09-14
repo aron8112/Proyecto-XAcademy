@@ -67,11 +67,23 @@ const updateCourse = async (id) => {
 };
 
 const modifyCourse = async (id, body) => {
-  const modCourse = await Course.update(body, { where: { id } });
-  if (!modCourse) {
+  const course = await Course.findOne({ where: { id } });
+  if (course) {
+    const modCourse = await course.update(body, { where: { id } });
+    if (!modCourse) {
+      throw new Error('no se pudo actualizar');
+    }
+    return modCourse;
+  }
+  throw new Error('no existe el curso');
+};
+
+const deleteCourse = async (id) => {
+  const delCourse = await Course.destroy({ where: { id } });
+  if (!delCourse) {
     throw new Error();
   }
-  return modCourse;
+  return true;
 };
 
 module.exports = {
@@ -80,4 +92,5 @@ module.exports = {
   newCourseProv,
   updateCourse,
   modifyCourse,
+  deleteCourse,
 };

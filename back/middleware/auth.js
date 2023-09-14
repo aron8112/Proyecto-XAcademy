@@ -69,7 +69,30 @@ const isTeacherMdw = (req, res, next) =>
     },
   )(req, res, next);
 
+const isAdminAndTeacherMdw = (req, res, next) =>
+  //   console.log(req.headers.authorization);
+  passport.authenticate(
+    'jwt',
+    { session: false },
+    (err, user, info) => {
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+
+      if (user.isTeacher && user.isAdmin === true) {
+        return next();
+      }
+
+      res.status(403).json({
+        error:
+          'You are not allowed to perform the action you asked for',
+      });
+    },
+  )(req, res, next);
+
 module.exports = {
   isAdminMdw,
   isTeacherMdw,
+  isAdminAndTeacherMdw,
 };
