@@ -29,7 +29,7 @@
                             pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
                         <br>
                         <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseStartDate.invalid"
-                            (click)="sendChanges(modCourseStartDate)">Modificar</button>
+                            (click)="sendStartDates(modCourseStartDate)">Modificar</button>
                     </form>
                     <hr>
 
@@ -44,7 +44,7 @@
 
                         <br>
                         <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseEndDate.invalid"
-                            (click)="sendChanges(modCourseEndDate)">Modificar</button>
+                            (click)="sendEndDates(modCourseEndDate)">Modificar</button>
                     </form>
                     <hr>
                     <form #moddescription="ngForm">

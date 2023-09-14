@@ -74,12 +74,6 @@ export class ModifyCourseComponent implements OnInit
     this.model.courseEndDate.getTimezoneOffset()
   }
 
-  convertDate(date: any)
-  {
-    const newdate = date.split('-');
-    return new Date(newdate[2], newdate[1], newdate[0])
-  }
-
   sendChanges(form: NgForm): void
   {
     //enviar el header con el token
@@ -107,4 +101,69 @@ export class ModifyCourseComponent implements OnInit
     })
   }
 
+  convertDate(date: any)
+  {
+    const data = date.split('-');
+    let month = data[1] - 1
+    const newDate = new Date(data[2], month, data[0])
+    const result = newDate.toISOString().slice(0, 19).replace('T', ' ')
+
+    return result;
+  }
+
+  sendStartDates(form: NgForm)
+  {
+    //enviar el header con el token
+    const token = localStorage.getItem('auth_token');
+    this.apiService.setHeader('Authorization', `Bearer ${token}`)
+
+    let setDate = this.convertDate(form.value.courseStartDate)
+    const body = { courseStartDate: setDate }
+
+    this.courseService.modifyCourse(`/courses/modify/${this.id}`, body).subscribe({
+      next: () =>
+      {
+        window.alert('Curso modificado correctamente')
+        this.router.navigate(['cursos'])
+      },
+      error: (error) =>
+      {
+        let errorMessage = 'An error occured retrieving data';
+        if (error)
+        {
+          errorMessage = `Error: code ${error.message}`;
+        }
+        window.alert('Datos incorrectos');
+        throw Error(errorMessage);
+      },
+    })
+  }
+
+  sendEndDates(form: NgForm)
+  {
+    //enviar el header con el token
+    const token = localStorage.getItem('auth_token');
+    this.apiService.setHeader('Authorization', `Bearer ${token}`)
+
+    let setDate = this.convertDate(form.value.courseEndDate)
+    const body = { courseEndDate: setDate }
+
+    this.courseService.modifyCourse(`/courses/modify/${this.id}`, body).subscribe({
+      next: () =>
+      {
+        window.alert('Curso modificado correctamente')
+        this.router.navigate(['cursos'])
+      },
+      error: (error) =>
+      {
+        let errorMessage = 'An error occured retrieving data';
+        if (error)
+        {
+          errorMessage = `Error: code ${error.message}`;
+        }
+        window.alert('Datos incorrectos');
+        throw Error(errorMessage);
+      },
+    })
+  }
 }
