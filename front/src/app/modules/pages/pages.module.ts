@@ -11,6 +11,7 @@ import { LoginFormComponent } from 'src/app/components/forms/login-form/login-fo
 import { RegisterFormComponent } from 'src/app/components/forms/register-form/register-form.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardPageComponent } from '../dashboard/dashboard-page/dashboard-page.component';
+import { PublicacionesComponent } from './publicaciones/publicaciones.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { DashboardPageComponent } from '../dashboard/dashboard-page/dashboard-pa
     PublicacionComponent,
     PreciosComponent,
     RegisterFormComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
+    PublicacionesComponent
   ],
   imports: [
     CommonModule,
