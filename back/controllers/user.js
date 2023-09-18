@@ -56,7 +56,7 @@ const getOneUserCont = async (req, res) => {
     res.status(200).send(userfound);
   } catch (error) {
     res.status(500).send({
-      error: error.message,
+      error,
     });
   }
 };
@@ -109,6 +109,22 @@ const signupInCourse = async (req, res) => {
   }
 };
 
+const deleteUserInCourse = async (req, res) => {
+  const { userid, courseid } = req.params;
+  try {
+    const deleteUser = await UserServices.deleteUserCourseServ(userid, courseid);
+    if (deleteUser) {
+      res.status(200).send({
+        msg: 'Enrollment changed',
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createUserCont,
   loginUserCont,
@@ -119,4 +135,5 @@ module.exports = {
   saveAttendanceCont,
   updateEnrollmentCont,
   signupInCourse,
+  deleteUserInCourse,
 };

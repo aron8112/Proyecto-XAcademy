@@ -19,6 +19,14 @@ export class CoursesService
             );
     }
 
+    getAllWS(): Observable<Icourses[]>
+    {
+        return this.apiService.get<Icourses[]>('/courses/allws')
+            .pipe(
+                catchError(this.handleError<Icourses[]>('getCourses', [])),
+            );
+    }
+
     getOneCourse(id: Params)
     {
         return this.apiService.get<Icourses>(`/courses/${id}`)

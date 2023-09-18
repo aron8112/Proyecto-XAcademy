@@ -74,10 +74,23 @@ const deleteCourse = async (req, res) => {
   }
 };
 
+const getAlWS = async (req, res) => {
+  try {
+    const getAll = await CourseServices.getAllWS();
+    res.status(200).send(getAll);
+  } catch (error) {
+    res.status(400).json({
+      action: 'getAllCourses',
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCourses,
   getCourse,
   createCourseCont,
   modCourse,
   deleteCourse,
+  getAlWS,
 };

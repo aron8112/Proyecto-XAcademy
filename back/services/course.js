@@ -30,10 +30,17 @@ const deleteCourseServ = async (id) => {
   return deletedCourse;
 };
 
+const getAllWS = async () => {
+  const getAllW = await CourseProvider.getAllwithStudents();
+
+  return getAllW;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   createCourseServ,
   modCourseServ,
   deleteCourseServ,
+  getAllWS,
 };

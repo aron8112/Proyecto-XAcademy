@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const { Course } = require('../models');
+const { Course, User } = require('../models');
 // eslint-disable-next-line import/order
 
 const getAllCourses = async () => {
@@ -86,6 +86,17 @@ const deleteCourse = async (id) => {
   return true;
 };
 
+const getAllwithStudents = async () => {
+  try {
+    const AllCourses = await Course.findAll({ include: [{ model: User, as: 'users' }] });
+    return AllCourses;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log('Error when fetching all courses', err);
+    throw err;
+  }
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
@@ -93,4 +104,5 @@ module.exports = {
   updateCourse,
   modifyCourse,
   deleteCourse,
+  getAllwithStudents,
 };

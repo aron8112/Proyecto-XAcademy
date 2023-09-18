@@ -10,30 +10,22 @@ import { RegisterFormComponent } from './components/forms/register-form/register
 import { CursoComponent } from './components/commons/curso/curso.component';
 import { CreateCourseComponent } from './components/forms/courses/create-course/create-course.component';
 import { ModifyCourseComponent } from './components/forms/courses/modify-course/modify-course.component';
+import { DashboardPageComponent } from './modules/dashboard/dashboard-page/dashboard-page.component';
 
-// import { AuthGuard } from './core/guards/auth.guard';
-// import { RoleGuardService } from "./core/guards/auth-roles.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'cursos', component: CursosComponent },
   { path: 'precios', component: PreciosComponent },
-  // { path: 'carrito', canActivate: [authGuard], component: CarritoComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'signup', component: RegisterFormComponent },
   { path: 'miperfil/:id', canActivate: [authGuard], component: CarritoComponent },
   { path: 'cursos/details/:id', component: CursoComponent },
+  { path: 'cursos/liststudents', canActivate: [authGuard, authBothRoleGuard], component: DashboardPageComponent },
   { path: 'cursos/create', canActivate: [authGuard, authAdminRoleGuard], component: CreateCourseComponent },
   { path: 'cursos/modifcourse/:id', canActivate: [authGuard, authBothRoleGuard], component: ModifyCourseComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
-  // ,
-  // { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)}
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: 'dashboard'
-  // }
 ];
 
 @NgModule({
