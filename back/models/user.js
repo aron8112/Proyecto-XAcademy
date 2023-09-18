@@ -7,8 +7,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate() {
-      // define association here
+    static associate(models) {
+      this.belongsToMany(models.Course, {
+        through: models.UserCourse, // Utiliza el modelo UserCourse como tabla intermedia
+        sourceKey: 'id',
+        onDelete: 'cascade',
+        foreignKey: 'userId', // Nombre de la clave foránea en UserCourse que hace referencia a User
+        as: 'Courses', // Alias para acceder a los cursos desde un usuario
+      });
     }
   }
   User.init({
@@ -35,18 +41,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    course: {
-      type: DataTypes.STRING,
-      defaultValue: null,
-    },
-    attendance: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
-    },
-    enrolled: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
@@ -55,10 +49,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE,
   },
   {
     sequelize,
-    timestamps: false,
+    timestamps: true,
     paranoid: true,
     modelName: 'User',
     tableName: 'Users',

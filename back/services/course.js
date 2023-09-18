@@ -18,8 +18,29 @@ const createCourseServ = async (course) => {
   return newCourse;
 };
 
+const modCourseServ = async (id, body) => {
+  const modCourse = await CourseProvider.modifyCourse(id, body);
+
+  return modCourse;
+};
+
+const deleteCourseServ = async (id) => {
+  const deletedCourse = await CourseProvider.deleteCourse(id);
+
+  return deletedCourse;
+};
+
+const getAllWS = async () => {
+  const getAllW = await CourseProvider.getAllwithStudents();
+
+  return getAllW;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   createCourseServ,
+  modCourseServ,
+  deleteCourseServ,
+  getAllWS,
 };

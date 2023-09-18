@@ -19,15 +19,18 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     title: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT,
     image: DataTypes.STRING,
     start_date: DataTypes.DATE,
     finish_date: DataTypes.DATE,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    deletedAt: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'Publication',
-    createdAt: false,
-    updatedAt: false,
+    timestamps: true,
+    paranoid: true,
   });
   return Publication;
 };

@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-const { Course } = require('../models');
+const { Course, User } = require('../models');
 // eslint-disable-next-line import/order
 
 const getAllCourses = async () => {
@@ -30,6 +30,10 @@ const newCourseProv = async (course) => {
     courseName,
     courseStartDate,
     courseEndDate,
+    description,
+    shortDescription,
+    amountclasses,
+    schedule,
   } = course;
 
   // eslint-disable-next-line no-useless-catch
@@ -41,6 +45,10 @@ const newCourseProv = async (course) => {
       courseName,
       courseStartDate,
       courseEndDate,
+      description,
+      shortDescription,
+      amountclasses,
+      schedule,
     });
     return newCourse;
   } catch (error) {
@@ -50,6 +58,7 @@ const newCourseProv = async (course) => {
 
 const updateCourse = async (id) => {
   const course = await Course.findByPk(id);
+  console.log(course);
   if (course) {
     await course.increment('attendance');
     return true;
@@ -57,9 +66,43 @@ const updateCourse = async (id) => {
   throw new Error();
 };
 
+const modifyCourse = async (id, body) => {
+  const course = await Course.findOne({ where: { id } });
+  if (course) {
+    const modCourse = await course.update(body, { where: { id } });
+    if (!modCourse) {
+      throw new Error('no se pudo actualizar');
+    }
+    return modCourse;
+  }
+  throw new Error('no existe el curso');
+};
+
+const deleteCourse = async (id) => {
+  const delCourse = await Course.destroy({ where: { id } });
+  if (!delCourse) {
+    throw new Error();
+  }
+  return true;
+};
+
+const getAllwithStudents = async () => {
+  try {
+    const AllCourses = await Course.findAll({ include: [{ model: User, as: 'users' }] });
+    return AllCourses;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log('Error when fetching all courses', err);
+    throw err;
+  }
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
   newCourseProv,
   updateCourse,
+  modifyCourse,
+  deleteCourse,
+  getAllwithStudents,
 };

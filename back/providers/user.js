@@ -3,11 +3,11 @@
 /* eslint-disable no-useless-catch */
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const { User } = require('../models');
+const { User, UserCourse, Course } = require('../models');
 const {
   tokenSign,
 } = require('../middleware/token');
-const { wrongEmailOrPassw, userNotFound } = require('../exceptions/erros');
+const { wrongEmailOrPassw, userNotFound, registerInCourseError } = require('../exceptions/errors');
 
 const newUserProv = async (user) => {
   const {
@@ -29,19 +29,9 @@ const newUserProv = async (user) => {
       ),
     });
     if (newUser) {
-      // return newUser;
       const token = tokenSign(newUser);
-      // const result = {
-      //   token: token,
-      //   user: newUser,
-      // }
       return token;
     }
-    // user.password = await bcrypt.hash(
-    //   password,
-    //   10,
-    // );
-    // return user;
   } catch (error) {
     throw error;
   }
@@ -61,12 +51,7 @@ const loginProv = async (user) => {
 
       if (password) {
         const token = tokenSign(foundUser);
-        // const result = {
-        //   token: token,
-        //   user: foundUser,
-        // };
         return token;
-        // return user;
       }
       throw wrongEmailOrPassw;
     }
@@ -76,34 +61,82 @@ const loginProv = async (user) => {
   }
 };
 
-const getUserProv = async (id) => {
+const getUserProv = async (userId) => {
   try {
-    const user = await User.findByPk(id);
+    const user = await User.findOne({ where: { id: userId } });
     if (user) {
-      return user.id;
+      return user;
     }
   } catch (error) {
     throw new Error('Cannot find User');
   }
-  // try {
-  //   const course = await Course.findByPk(idCourse);
-  //   if (course) {
-  //     const attendance = await User.update({ attendance: +1 }, { where: idUser });
-  //     if (attendance) {
-  //       return true;
-  //     }
-  //     throw new Error('Attendance: Unable to generate attendance');
-  //   }
-  //   throw new Error('Course: Unable to find course');
-  // } catch (error) {
-  //   throw new Error('Unable to process the request Save Attendance');
-  // }
+};
+const signupInCourse = async (userId, courseId) => {
+  const saveReg = await UserCourse.create({
+    id: crypto.randomUUID(),
+    userId,
+    courseId,
+  });
+  if (!saveReg) {
+    throw registerInCourseError;
+  }
+  return true;
 };
 
-const updateUser = async (id) => {
-  const user = await User.findByPk(id);
+const updateUserAttendance = async (UserId, CourseId) => {
+  const user = await UserCourse.findOne({
+    where: {
+      userId: UserId,
+      courseId: CourseId,
+    },
+  });
   if (user) {
     await user.increment('attendance');
+    return true;
+  }
+  throw new Error();
+};
+
+const updateUserEnrollment = async (UserId, CourseId) => {
+  const user = await UserCourse.findOne({
+    where: {
+      userId: UserId,
+      courseId: CourseId,
+    },
+  });
+  if (user) {
+    user.update({ enrolled: true });
+    return true;
+  }
+  throw new Error();
+};
+
+async function getOneUserInfo(id) {
+  try {
+    const user = await User.findAll({
+      where: { id },
+      include: [{ model: Course, as: 'Courses' }],
+    });
+
+    // if (user.length === 0) {
+    //   console.log('pasa al service para buscar solo el user');
+    //   const user2 = await getUserProv(id);
+    //   return user2;
+    // }
+    return user;
+  } catch (error) {
+    throw Error;
+  }
+}
+
+const deleteUserCourse = async (UserId, CourseId) => {
+  const user = await UserCourse.destroy({
+    where: {
+      userId: UserId,
+      courseId: CourseId,
+    },
+  });
+  if (user) {
     return true;
   }
   throw new Error();
@@ -113,5 +146,9 @@ module.exports = {
   newUserProv,
   loginProv,
   getUserProv,
-  updateUser,
+  signupInCourse,
+  updateUserAttendance,
+  updateUserEnrollment,
+  getOneUserInfo,
+  deleteUserCourse,
 };
