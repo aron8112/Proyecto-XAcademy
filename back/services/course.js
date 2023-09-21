@@ -36,6 +36,12 @@ const getAllWS = async () => {
   return getAllW;
 };
 
+const saveImageServ = async (file, courseId) => {
+  const saveImage = await CourseProvider.savingImage(file, courseId);
+
+  return saveImage;
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
@@ -43,4 +49,5 @@ module.exports = {
   modCourseServ,
   deleteCourseServ,
   getAllWS,
+  saveImageServ,
 };

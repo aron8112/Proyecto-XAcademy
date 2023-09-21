@@ -20,7 +20,7 @@ export class ModifyCourseComponent implements OnInit
     courseEndDate: new Date,
     description: new Text,
     shortDescription: new Text,
-    attendance: new Number,
+    pathImage: new String,
     amountclasses: new Number,
     schedule: new String,
     deleted: new Boolean,
@@ -33,7 +33,7 @@ export class ModifyCourseComponent implements OnInit
     courseEndDate: new Date,
     description: new Text,
     shortDescription: new Text,
-    attendance: new Number,
+    pathImage: new String,
     amountclasses: new Number,
     schedule: new String,
   }

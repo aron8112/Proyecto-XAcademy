@@ -18,7 +18,7 @@
                         + </button></td>
                 <td>
                     <button *ngIf="id.isTeacher || id.isAdmin && user.UserCourse.enrolled === false"
-                        class="btn btn-secondary" (click)="enrollChange(user.id, course.id)">
+                        class="btn btn-secondary" (click)="enrollChange(user, course.id)">
                         Pendiente - click para cambiar </button>
                     <p *ngIf="user.UserCourse.enrolled === true "> OK </p>
                 </td>

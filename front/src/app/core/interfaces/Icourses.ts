@@ -6,7 +6,7 @@ export interface Icourses
     courseEndDate: Date,
     description: Text,
     shortDescription: Text,
-    attendance?: Number,
+    pathImage?: String | null,
     amountclasses: Number,
     schedule: String,
     deleted?: Boolean,

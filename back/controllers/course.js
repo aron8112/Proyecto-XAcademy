@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { CourseServices } = require('../services');
+const multerUpload = require('../middleware/upload');
 
 const getAllCourses = async (req, res) => {
   try {
@@ -32,6 +33,7 @@ const getCourse = async (req, res) => {
 const createCourseCont = async (req, res) => {
   try {
     const newCourse = await CourseServices.createCourseServ(req.body);
+    multerUpload();
     res.status(201).send({
       newCourse,
     });
@@ -86,6 +88,28 @@ const getAlWS = async (req, res) => {
   }
 };
 
+const saveImage = async (req, res) => {
+  multerUpload(req, res, async (err) => {
+    if (err) {
+      res.status(400).json({
+        action: 'saveImageMulter',
+        error: err.message,
+      });
+    }
+    const { file } = req;
+    const { id } = req.params;
+    try {
+      const savingImage = await CourseServices.saveImageServ(file, id);
+      res.status(200).send(savingImage);
+    } catch (error) {
+      res.status(400).json({
+        action: 'saveImage',
+        error: error.message,
+      });
+    }
+  });
+};
+
 module.exports = {
   getAllCourses,
   getCourse,
@@ -93,4 +117,5 @@ module.exports = {
   modCourse,
   deleteCourse,
   getAlWS,
+  saveImage,
 };

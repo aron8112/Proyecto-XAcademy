@@ -11,7 +11,7 @@ module.exports = {
       shortDescription: Sequelize.TEXT,
       amountclasses: Sequelize.INTEGER,
       schedule: Sequelize.STRING,
-      attendance: Sequelize.INTEGER,
+      pathImage: Sequelize.STRING,
       deleted: Sequelize.BOOLEAN,
       visualized: Sequelize.BOOLEAN,
       createdAt: Sequelize.DATE,

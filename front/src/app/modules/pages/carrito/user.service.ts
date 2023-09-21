@@ -44,7 +44,9 @@ export class UserService
 
     deleteUserCourse(userId: string, courseId: string)
     {
-        return this.apiService.delete(`users/deleteuserincourse/${userId}/${courseId}`).pipe(
+        const urldelete = `/users/${userId}/deleteuserincourse/${courseId}`
+        console.log(urldelete)
+        return this.apiService.delete(urldelete).pipe(
             catchError(this.handleError<User>('getUser')),
         );
     }

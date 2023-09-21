@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/core/http/api.service';
 import { CoursesService } from '../../pages/cursos/cursos.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { UserService } from '../../pages/carrito/user.service';
+import { User } from 'src/app/core/interfaces/user';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -16,7 +17,6 @@ export class DashboardPageComponent
   }
 
   id: any
-
   cursos: any;
 
   ngOnInit(): void
@@ -45,22 +45,18 @@ export class DashboardPageComponent
   getId(): void
   {
     return this.authService.setUserId()
-    // this.authService.getUserId().subscribe((userId: string) =>
-    // {
-    //   this.id = userId
-    // })
   }
 
   incrementAtt(userId: string, courseId: string)
   {
     const token = localStorage.getItem('auth_token');
     this.apiService.setHeader('Authorization', `Bearer ${token}`)
-    console.log(`userid: ${userId} y courseId: ${courseId}`)
+    console.log(`userid: ${userId!} y courseId: ${courseId}`)
 
     this.userService.incrementAttendance(userId, courseId).subscribe({
       next: (response) =>
       {
-        alert('Asistencia +1')
+        this.getallws()
       },
       error: (error) =>
       {
@@ -74,15 +70,14 @@ export class DashboardPageComponent
     })
   }
 
-  enrollChange(userId: string, courseId: string)
+  enrollChange(user: User, courseId: string)
   {
     const token = localStorage.getItem('auth_token');
     this.apiService.setHeader('Authorization', `Bearer ${token}`)
-    this.userService.changeEnroll(userId, courseId).subscribe({
+    this.userService.changeEnroll(user.id!, courseId).subscribe({
       next: (response) =>
       {
-        alert('Estado de matrícula cambiado')
-        console.log(response)
+        this.getallws()
       },
       error: (error) =>
       {
@@ -103,8 +98,7 @@ export class DashboardPageComponent
     this.userService.deleteUserCourse(userid, courseid).subscribe({
       next: (response) =>
       {
-        alert('Se ha dado de baja el estudiante del curso')
-        console.log(response)
+        this.getallws()
       },
       error: (error) =>
       {

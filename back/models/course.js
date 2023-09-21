@@ -40,9 +40,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       defaultValue: '',
     },
-    attendance: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+    pathImage: {
+      type: DataTypes.STRING,
+      defaultValue: null,
     },
     amountclasses: {
       type: DataTypes.INTEGER,

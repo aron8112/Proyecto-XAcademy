@@ -23,7 +23,7 @@ export class CursoComponent implements OnInit
     courseEndDate: new Date,
     description: new Text,
     shortDescription: new Text,
-    attendance: new Number,
+    pathImage: new String,
     amountclasses: new Number,
     schedule: new String,
     deleted: new Boolean,
@@ -87,7 +87,7 @@ export class CursoComponent implements OnInit
       next: (response) =>
       {
         alert('Inscripción al curso correcta')
-        this.router.navigate([`/miperfil/${userId}`])
+        this.router.navigate([`/cursos`])
         this.user = response
       },
       error: (error) =>
@@ -114,7 +114,6 @@ export class CursoComponent implements OnInit
 
   delete(id: any)
   {
-
     //enviar el header con el token
     const token = localStorage.getItem('auth_token');
     this.apiService.setHeader('Authorization', `Bearer ${token}`)
@@ -142,4 +141,5 @@ export class CursoComponent implements OnInit
   {
 
   }
+
 }

@@ -16,6 +16,7 @@ router.put('/modify/:id', isAdminAndTeacherMdw, courseController.modCourse);
 
 // ONLY ADMIN
 router.post('/create', checkPostCourse, isAdminMdw, courseController.createCourseCont);
+router.put('/create/:id/addimage', isAdminMdw, courseController.saveImage);
 router.delete('/deletecourse/:id', isAdminMdw, courseController.deleteCourse);
 
 module.exports = router;

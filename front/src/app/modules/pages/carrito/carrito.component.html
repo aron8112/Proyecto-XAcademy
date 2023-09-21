@@ -51,26 +51,28 @@
               aria-label="Recipient's user[0]name" aria-describedby="button-addon2" value="{{user[0].email}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
-          <h3 class="card-title">Cursos</h3>
-          <table id="coursesCSS">
-            <tr>
-              <th>Curso</th>
-              <th>Horario</th>
-              <th>Asistencias</th>
-              <th>Matrícula</th>
-              <th></th>
-            </tr>
-            <tr *ngFor="let course of user[0].Courses">
-              <td>{{course.courseName}}</td>
-              <td>{{course.schedule}}</td>
-              <td>{{course.UserCourse.attendance}}</td>
-              <td>
-                <p *ngIf="course.UserCourse.enrolled === true">PAGADA</p>
-                <p *ngIf="course.UserCourse.enrolled === false">PENDIENTE</p>
-              </td>
-              <td><button *ngIf="course.UserCourse.enrolled === false" class="btn btn-secondary">Pagar</button></td>
-            </tr>
-          </table>
+          <div *ngIf="!user[0].isAdmin">
+            <h3 class="card-title">Cursos</h3>
+            <table id="coursesCSS">
+              <tr>
+                <th>Curso</th>
+                <th>Horario</th>
+                <th>Asistencias</th>
+                <th>Matrícula</th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let course of user[0].Courses">
+                <td>{{course.courseName}}</td>
+                <td>{{course.schedule}}</td>
+                <td>{{course.UserCourse.attendance}}</td>
+                <td>
+                  <p *ngIf="course.UserCourse.enrolled === true">PAGADA</p>
+                  <p *ngIf="course.UserCourse.enrolled === false">PENDIENTE</p>
+                </td>
+                <td><button *ngIf="course.UserCourse.enrolled === false" class="btn btn-secondary">Pagar</button></td>
+              </tr>
+            </table>
+          </div>
         </div>
 
 

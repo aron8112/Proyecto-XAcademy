@@ -97,6 +97,17 @@ const getAllwithStudents = async () => {
   }
 };
 
+const savingImage = async (file, courseId) => {
+  console.log(`file: ${file.filename}, courseId: ${courseId}`);
+  try {
+    const saveImagePath = await Course.update({ pathImage: file.filename },
+      { where: { id: courseId } });
+    return saveImagePath;
+  } catch (error) {
+    throw new Error('no se pudo guardar la modificacion');
+  }
+};
+
 module.exports = {
   getAllCourses,
   getOneCourse,
@@ -105,4 +116,5 @@ module.exports = {
   modifyCourse,
   deleteCourse,
   getAllwithStudents,
+  savingImage,
 };

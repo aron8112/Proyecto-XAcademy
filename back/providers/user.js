@@ -84,6 +84,7 @@ const signupInCourse = async (userId, courseId) => {
 };
 
 const updateUserAttendance = async (UserId, CourseId) => {
+  console.log(`user: ${UserId}, course: ${CourseId}`);
   const user = await UserCourse.findOne({
     where: {
       userId: UserId,

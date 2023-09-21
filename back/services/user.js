@@ -27,14 +27,11 @@ const signupInCourseServ = async (userId, courseId) => {
 
 const saveAttendanceServ = async (UserId, CourseId) => {
   try {
-    const course = await CourseProvider.updateCourse(CourseId);
-    if (course) {
-      const user = await UserProvider.updateUserAttendance(UserId, CourseId);
-      if (user) {
-        return true;
-      }
-      throw errorInService;
+    const user = await UserProvider.updateUserAttendance(UserId, CourseId);
+    if (user) {
+      return true;
     }
+    throw errorInService;
   } catch (error) {
     throw errorInService;
   }
