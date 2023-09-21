@@ -11,6 +11,7 @@ module.exports = {
       finish_date: Sequelize.DATE,
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
+      deletedAt: Sequelize.DATE,
     });
   },
   async down(queryInterface, Sequelize) {

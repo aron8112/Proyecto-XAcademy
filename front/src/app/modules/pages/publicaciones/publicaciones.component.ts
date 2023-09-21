@@ -12,15 +12,13 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class PublicacionesComponent implements OnInit {
 
 publications : Ipublication[] = [];
-id : any;
-
 
   constructor(private publicationService: PublicationsService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void
   {
     this.getAllPublications();
-    //this.id = this.getRole()
+
   }
 
   getAllPublications(): void
@@ -28,7 +26,15 @@ id : any;
     this.publicationService.getAllPublications().subscribe(publications =>
     {
       this.publications = publications;
+      
     });
   }
+
+  
+  navigate(id: string): void
+  {
+    this.router.navigate([`/publicaciones/details/${id}`]);
+  }
+
 
 }

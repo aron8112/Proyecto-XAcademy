@@ -19,7 +19,7 @@ export class PublicationsService
             );
     }
 
-    getOneCourse(id: Params)
+    getOnePublication(id: Params)
     {
         return this.apiService.get<Ipublication>(`/publications/${id}`)
             .pipe(

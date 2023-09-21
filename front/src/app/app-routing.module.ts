@@ -13,6 +13,7 @@ import { ModifyCourseComponent } from './components/forms/courses/modify-course/
 import { PublicacionesComponent } from './modules/pages/publicaciones/publicaciones.component';
 import { CreatePublicationsComponent } from './components/forms/publications/create-publications/create-publications.component';
 import { ModifyPublicationsComponent } from './components/forms/publications/modify-publications/modify-publications.component';
+import { PublicacionComponent } from './components/commons/publicacion/publicacion.component';
 
 // import { AuthGuard } from './core/guards/auth.guard';
 // import { RoleGuardService } from "./core/guards/auth-roles.guard";
@@ -30,8 +31,9 @@ const routes: Routes = [
   { path: 'cursos/details/:id', component: CursoComponent },
   { path: 'cursos/create', canActivate: [authGuard, authAdminRoleGuard], component: CreateCourseComponent },
   { path: 'cursos/modifcourse/:id', canActivate: [authGuard, authBothRoleGuard], component: ModifyCourseComponent },
-  { path: 'publicaciones/create', component: CreatePublicationsComponent },
-  { path: 'publicaciones/modifpublicacion/:id', component: ModifyPublicationsComponent },
+  { path: 'publicaciones/create', canActivate: [authGuard, authAdminRoleGuard], component: CreatePublicationsComponent },
+  { path: 'publicaciones/modifpublicacion/:id', canActivate: [authGuard, authAdminRoleGuard], component: ModifyPublicationsComponent },
+  { path: 'publicaciones/details/:id', component: PublicacionComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
   // ,
   // { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)}
