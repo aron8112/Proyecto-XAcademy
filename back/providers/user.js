@@ -61,11 +61,11 @@ const loginProv = async (user) => {
   }
 };
 
-const getUserProv = async (id) => {
+const getUserProv = async (userId) => {
   try {
-    const user = await User.findByPk(id);
+    const user = await User.findOne({ where: { id: userId } });
     if (user) {
-      return user.id;
+      return user;
     }
   } catch (error) {
     throw new Error('Cannot find User');
@@ -83,8 +83,13 @@ const signupInCourse = async (userId, courseId) => {
   return true;
 };
 
-const updateUserAttendance = async (id) => {
-  const user = await UserCourse.findByPk(id);
+const updateUserAttendance = async (UserId, CourseId) => {
+  const user = await UserCourse.findOne({
+    where: {
+      userId: UserId,
+      courseId: CourseId,
+    },
+  });
   if (user) {
     await user.increment('attendance');
     return true;
@@ -92,13 +97,15 @@ const updateUserAttendance = async (id) => {
   throw new Error();
 };
 
-const updateUserEnrollment = async (id) => {
-  const user = await UserCourse.update({ enrolled: true }, {
+const updateUserEnrollment = async (UserId, CourseId) => {
+  const user = await UserCourse.findOne({
     where: {
-      userId: id,
+      userId: UserId,
+      courseId: CourseId,
     },
   });
   if (user) {
+    user.update({ enrolled: true });
     return true;
   }
   throw new Error();
@@ -106,12 +113,34 @@ const updateUserEnrollment = async (id) => {
 
 async function getOneUserInfo(id) {
   try {
-    const user = await User.findAll({ where: { id }, include: [{ model: Course, as: 'Courses' }] });
+    const user = await User.findAll({
+      where: { id },
+      include: [{ model: Course, as: 'Courses' }],
+    });
+
+    // if (user.length === 0) {
+    //   console.log('pasa al service para buscar solo el user');
+    //   const user2 = await getUserProv(id);
+    //   return user2;
+    // }
     return user;
   } catch (error) {
     throw Error;
   }
 }
+
+const deleteUserCourse = async (UserId, CourseId) => {
+  const user = await UserCourse.destroy({
+    where: {
+      userId: UserId,
+      courseId: CourseId,
+    },
+  });
+  if (user) {
+    return true;
+  }
+  throw new Error();
+};
 
 module.exports = {
   newUserProv,
@@ -121,4 +150,5 @@ module.exports = {
   updateUserAttendance,
   updateUserEnrollment,
   getOneUserInfo,
+  deleteUserCourse,
 };

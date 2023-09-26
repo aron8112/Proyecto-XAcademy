@@ -18,6 +18,8 @@ module.exports = {
       ),
       isAdmin: true,
       isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: crypto.randomUUID(),
@@ -30,6 +32,8 @@ module.exports = {
       ),
       isAdmin: true,
       isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: crypto.randomUUID(),
@@ -42,6 +46,8 @@ module.exports = {
       ),
       isAdmin: false,
       isTeacher: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: crypto.randomUUID(),
@@ -54,6 +60,8 @@ module.exports = {
       ),
       isAdmin: false,
       isTeacher: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: crypto.randomUUID(),
@@ -66,6 +74,8 @@ module.exports = {
       ),
       isAdmin: false,
       isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     },
     {
       id: crypto.randomUUID(),
@@ -78,6 +88,8 @@ module.exports = {
       ),
       isAdmin: false,
       isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     }], {});
   },
 

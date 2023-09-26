@@ -14,9 +14,9 @@ import { PublicacionesComponent } from './modules/pages/publicaciones/publicacio
 import { CreatePublicationsComponent } from './components/forms/publications/create-publications/create-publications.component';
 import { ModifyPublicationsComponent } from './components/forms/publications/modify-publications/modify-publications.component';
 import { PublicacionComponent } from './components/commons/publicacion/publicacion.component';
+import { DashboardPageComponent } from './modules/dashboard/dashboard-page/dashboard-page.component';
 
-// import { AuthGuard } from './core/guards/auth.guard';
-// import { RoleGuardService } from "./core/guards/auth-roles.guard";
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,19 +29,13 @@ const routes: Routes = [
   { path: 'signup', component: RegisterFormComponent },
   { path: 'miperfil/:id', canActivate: [authGuard], component: CarritoComponent },
   { path: 'cursos/details/:id', component: CursoComponent },
+  { path: 'cursos/liststudents', canActivate: [authGuard, authBothRoleGuard], component: DashboardPageComponent },
   { path: 'cursos/create', canActivate: [authGuard, authAdminRoleGuard], component: CreateCourseComponent },
   { path: 'cursos/modifcourse/:id', canActivate: [authGuard, authBothRoleGuard], component: ModifyCourseComponent },
   { path: 'publicaciones/create', canActivate: [authGuard, authAdminRoleGuard], component: CreatePublicationsComponent },
   { path: 'publicaciones/modifpublicacion/:id', canActivate: [authGuard, authAdminRoleGuard], component: ModifyPublicationsComponent },
   { path: 'publicaciones/details/:id', component: PublicacionComponent },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
-  // ,
-  // { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)}
-  // },
-  // {
-  //   path: '**',
-  //   redirectTo: 'dashboard'
-  // }
 ];
 
 @NgModule({

@@ -29,10 +29,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      deletedAt: DataTypes.DATE,
     },
     {
       sequelize,
       timestamps: true,
+      paranoid: true,
       modelName: 'UserCourse',
       tableName: 'UserCourse', // Nombre de la tabla intermedia
     },
