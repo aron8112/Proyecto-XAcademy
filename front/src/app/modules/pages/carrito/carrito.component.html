@@ -15,10 +15,10 @@
               cursos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Crear publicación</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/publicaciones/create">Crear publicación</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Modificar publicación</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/publicaciones/modifpublicacion">Modificar publicación</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" *ngIf="user[0].isAdmin || user[0].isTeacher" routerLink="/cursos/liststudents">Listado

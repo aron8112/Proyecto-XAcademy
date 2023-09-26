@@ -1,1 +1,68 @@
-<p>modify-publications works!</p>
+<div class="container-fluid" style="margin: 20px; display: flex; justify-content: center;">
+    <!-- <div class="row"> -->
+    <div class="col-md-10 offset-md-3  bg-white shadow px-0"
+        style="margin: 20px; display: flex; justify-content: center;">
+        <div class="card text-center shadow px-0 w-75 mb-3"
+            style="margin: 20px; display: flex; justify-content: center;">
+            <div class="card-header">
+                <div class="card-header">
+                    <h1 class="card-title text-center">Modificar publicacion</h1>
+                </div>
+                <div class="card-body">
+                    <form #modTitle="ngForm">
+                        <h4>Título de la publicacion</h4>
+                        <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                            aria-describedby="Título" id="title" [(ngModel)]="model.title"
+                            #title="ngModel" name="title" value="{{publication.title}}">
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="modTitle.invalid"
+                            (click)="sendChanges(modTitle)">Modificar</button>
+                    </form>
+                    <hr>
+                    <form #modStart_date="ngForm">
+                        <h4>Fecha de inicio</h4>
+                        <br>
+                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                            aria-describedby="Inicio" id="start_date" [(ngModel)]="model.start_date"
+                            #start_date="ngModel" name="start_date"
+                            value="{{publication.start_date | date:'dd-MM-yyyy' }}"
+                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="modStart_date.invalid"
+                            (click)="sendChanges(modStart_date)">Modificar</button>
+                    </form>
+                    <hr>
+
+                    <form #modFinish_date="ngForm">
+                        <h4>Fecha de Finalización</h4>
+                        <br>
+                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                            aria-describedby="Inicio" id="finish_date" [(ngModel)]="model.finish_date"
+                            #finish_date="ngModel" name="finish_date"
+                            value="{{publication.finish_date | date:'dd-MM-yyyy' }}"
+                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="modFinish_date.invalid"
+                            (click)="sendChanges(modFinish_date)">Modificar</button>
+                    </form>
+                    <hr>
+                    <form #moddescription="ngForm">
+                        <h4>Descripción de la publicacion</h4>
+                        <textarea type="text" class="form-control" placeholder="Título" aria-label="Título"
+                            aria-describedby="Título" id="description" [(ngModel)]="model.description"
+                            #description="ngModel" name="description" value="{{publication.description}}"></textarea>
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="moddescription.invalid"
+                            (click)="sendChanges(moddescription)">Modificar</button>
+                  </form>       
+            
+                <div class="card-footer text-body-secondary">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-secondary me-md-2" type="button"
+                            [routerLink]="['/cursos']">Descartar</button>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</div>
