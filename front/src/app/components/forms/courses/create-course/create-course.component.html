@@ -12,7 +12,7 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <form #newCourse="ngForm">
+                            <form #newCourse="ngForm" enctype="multipart/form-data">
                                 <li class="list-group-item">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="courseName">Título del curso</span>
@@ -126,6 +126,13 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="alert"
                                                 aria-label="Cerrar"></button>
                                         </small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <input type="file" class="form-control" aria-label="imagen"
+                                            aria-describedby="imagen" id="image" [(ngModel)]="model.image"
+                                            #image="ngModel" name="image" (change)="onChange($event)">
                                     </div>
                                 </li>
                             </form>

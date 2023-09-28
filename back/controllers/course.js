@@ -33,7 +33,6 @@ const getCourse = async (req, res) => {
 const createCourseCont = async (req, res) => {
   try {
     const newCourse = await CourseServices.createCourseServ(req.body);
-    multerUpload();
     res.status(201).send({
       newCourse,
     });
