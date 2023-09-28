@@ -1,1 +1,81 @@
-<p>create-publications works!</p>
+<div class="container-fluid" style="margin: 20px; display: flex; justify-content: center;">
+    <div class="row">
+        <div class="card text-center shadow px-0 w-75 mb-3"
+            style="margin: 20px; display: flex; justify-content: center;">
+            <div class="card-header">
+                <div class="row" style="display: flex; justify-content: center;">
+                    <div class="card-header">
+                        <h1 class="card-title text-center"> Crear un nueva Publicacion</h1>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <form #newPublication="ngForm">
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="publicationTitle">Título de la PUblicacion</span>
+                                        <input type="text" class="form-control" placeholder="Título" aria-label="Título"
+                                            aria-describedby="Título" id="publicationTitle" [(ngModel)]="model.publicationTitle"
+                                            #publicationTitle="ngModel" name="publicationTitle" required>
+
+                                        <small *ngIf="publicationTitle.errors?.['required'] && publicationTitle.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡Debe ingresar un título para el curso!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="publicationStartDate">Fecha de la publicacion</span>
+                                        <input type="text" class="form-control" placeholder="Fecha de la publicacion"
+                                            aria-label="Fecha de la publicacion" aria-describedby="Fecha de la publicacion"
+                                            id="publicationStartDate" [(ngModel)]="model.publicationStartDate"
+                                            #publicationStartDate="ngModel" name="publicationStartDate" required
+                                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+
+                                        <small *ngIf="publicationStartDate.errors?.['required'] && publicationStartDate.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡Debe ingresar la fecha de inicio!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                    <div class="form-text" id="basic-addon4"> Ejemplo: 31-12-2023</div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="description">Descripción del Publicacion</span>
+                                        <textarea type="text" class="form-control" placeholder="Hasta 250 palabras"
+                                            aria-label="Descripción" aria-describedby="Descripción" id="description"
+                                            [(ngModel)]="model.description" #description="ngModel" name="description"
+                                            required></textarea>
+
+                                        <small *ngIf="description.errors?.['required'] && description.touched"
+                                            class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            ¡No se olvide de agregar una descripción!
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Cerrar"></button>
+                                        </small>
+
+                                    </div>
+                                </li>
+                                
+                            </form>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-secondary me-md-2" type="button"
+                                [routerLink]="['/publicaciones']">Descartar</button>
+                             <button class="btn btn-primary" type="button" (click)="createNewPublication(newPublication)"
+                                [disabled]="newPublication.invalid">Guardar publicacion</button> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
