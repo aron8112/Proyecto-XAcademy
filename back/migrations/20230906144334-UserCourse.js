@@ -39,6 +39,7 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
     },
+    deletedAt: Sequelize.DATE,
   }),
 
   down: (queryInterface, Sequelize) => queryInterface.dropTable('UserCourse'),

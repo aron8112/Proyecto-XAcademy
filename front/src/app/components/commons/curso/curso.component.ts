@@ -86,6 +86,8 @@ export class CursoComponent implements OnInit
     this.courseService.signUpInCourse(`/users/${userId}/signupcourse/${this.id}`).subscribe({
       next: (response) =>
       {
+        alert('Inscripción al curso correcta')
+        this.router.navigate([`/miperfil/${userId}`])
         this.user = response
       },
       error: (error) =>
@@ -134,5 +136,10 @@ export class CursoComponent implements OnInit
         throw Error(errorMessage);
       }
     })
+  }
+
+  IsAlreadyRegister(id: any)
+  {
+
   }
 }
