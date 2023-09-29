@@ -89,12 +89,14 @@ const getAlWS = async (req, res) => {
 
 const saveImage = async (req, res) => {
   multerUpload(req, res, async (err) => {
+    console.log('req multer:', req.body);
     if (err) {
       res.status(400).json({
         action: 'saveImageMulter',
         error: err.message,
       });
     }
+
     const { file } = req;
     const { id } = req.params;
     try {

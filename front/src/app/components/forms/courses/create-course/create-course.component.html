@@ -131,8 +131,8 @@
                                 <li class="list-group-item">
                                     <div class="input-group mb-3">
                                         <input type="file" class="form-control" aria-label="imagen"
-                                            aria-describedby="imagen" id="image" [(ngModel)]="model.image"
-                                            #image="ngModel" name="image" (change)="onChange($event)">
+                                            aria-describedby="imagen" id="image" name="image" value="{{model.image}}"
+                                            (change)="onChange($event)">
                                     </div>
                                 </li>
                             </form>

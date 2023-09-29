@@ -27,7 +27,7 @@ export class ModifyCourseComponent implements OnInit
     visualized: new Boolean
   }
 
-  model: Icourses = {
+  model: any = {
     courseName: new String,
     courseStartDate: new Date,
     courseEndDate: new Date,
@@ -42,6 +42,7 @@ export class ModifyCourseComponent implements OnInit
 
   id: any;
   isTeacherOrAdmin: any
+  file: File | Blob | string | null = null
 
   ngOnInit(): void
   {
@@ -53,6 +54,7 @@ export class ModifyCourseComponent implements OnInit
     this.getCourseInfo(this.id)
     this.isTeacherOrAdmin = this.canModify()
     this.changeDates()
+    console.log(this.course)
   }
 
   getCourseInfo(id: any): void
@@ -165,5 +167,52 @@ export class ModifyCourseComponent implements OnInit
         throw Error(errorMessage);
       },
     })
+  }
+
+  onChange(event: any): File | Blob | string | null
+  {
+    // console.log(event.target.files[0])
+    var blob = event.target.files[0].slice(0, event.target.files[0].size, 'image/png');
+    const newfile = new File([blob], event.target.files[0].name, { type: 'image/png' })
+    console.log(newfile)
+    return this.file = newfile
+    // this.file = blob
+  }
+
+  modImage(form: NgForm)
+  {
+    // const formData = new FormData();
+    // formData.append('file', this.file);
+
+    const body = {
+      file: this.file
+      //   // formData
+    }
+
+    const token = localStorage.getItem('auth_token');
+    this.apiService.setHeader('Authorization', `Bearer ${token}`);
+    this.apiService.setHeader('Content-Type', 'multipart/form-data')
+    // this.apiService.setHeader('enctype', 'multipart/form-data')
+
+    // Realiza la petición POST para subir la imagen
+    this.courseService.modifyCourse(`/courses/create/${this.id}/addImage`, body).subscribe(
+      {
+        next: (response) =>
+        {
+          console.log(response)
+        }
+        ,
+        error: (error) =>
+        {
+          let errorMessage = 'An error occured retrieving data';
+          if (error)
+          {
+            errorMessage = `Error: code ${error.message}`;
+          }
+          window.alert('Datos incorrectos');
+          throw Error(errorMessage);
+        }
+      }
+    );
   }
 }

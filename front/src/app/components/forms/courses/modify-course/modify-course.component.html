@@ -89,6 +89,16 @@
                         <button class="btn btn-outline-secondary" type="button" [disabled]="modschedule.invalid"
                             (click)="sendChanges(modschedule)">Modificar</button>
                     </form>
+
+                    <form #modimage="ngForm" enctype="multipart/form-data">
+                        <h4>Imagen</h4>
+                        <br>
+                        <input type="file" class="form-control" aria-label="imagen" aria-describedby="imagen" id="image"
+                            name="image" (change)="onChange($event)">
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button"
+                            (click)="modImage(modimage)">Modificar</button>
+                    </form>
                 </div>
                 <div class="card-footer text-body-secondary">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
