@@ -5,6 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsToMany(models.User, {
         through: models.UserCourse, // Utiliza el modelo UserCourse como tabla intermedia
+        sourceKey: 'id',
+        onDelete: 'cascade',
         foreignKey: 'courseId', // Nombre de la clave foránea en UserCourse que hace referencia a Course
         as: 'users', // Alias para acceder a los usuarios desde un curso
       });

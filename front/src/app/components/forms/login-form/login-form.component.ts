@@ -73,7 +73,11 @@ export class LoginFormComponent implements OnInit
         window.alert('Datos incorrectos');
         throw Error(errorMessage);
       },
-      complete: () => { this.router.navigate(['cursos']); }
+      complete: () =>
+      {
+        let id = localStorage.getItem('id')
+        this.router.navigate(['miperfil', id]);
+      }
     })
   }
 

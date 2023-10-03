@@ -29,7 +29,7 @@ const saveAttendanceServ = async (UserId, CourseId) => {
   try {
     const course = await CourseProvider.updateCourse(CourseId);
     if (course) {
-      const user = await UserProvider.updateUserAttendance(UserId);
+      const user = await UserProvider.updateUserAttendance(UserId, CourseId);
       if (user) {
         return true;
       }
@@ -44,7 +44,7 @@ const saveUpdateEnrollServ = async (UserId, CourseId) => {
   try {
     const course = await CourseProvider.getOneCourse(CourseId);
     if (course) {
-      const user = await UserProvider.updateUserEnrollment(UserId);
+      const user = await UserProvider.updateUserEnrollment(UserId, CourseId);
       if (user) {
         return user;
       }
@@ -57,11 +57,27 @@ const saveUpdateEnrollServ = async (UserId, CourseId) => {
 
 const getOneUserServ = async (id) => {
   const userfound = await UserProvider.getOneUserInfo(id);
-  if (!userfound) {
-    throw errorInService;
-  }
+
   return userfound;
+  // const user = await UserProvider.getUserProv(id);
+  // return user;
 };
+
+const deleteUserCourseServ = async (UserId, CourseId) => {
+  try {
+    const course = await CourseProvider.getOneCourse(CourseId);
+    if (course) {
+      const user = await UserProvider.deleteUserCourse(UserId, CourseId);
+      if (user) {
+        return user;
+      }
+      throw errorInService;
+    }
+  } catch (error) {
+    throw new Error('Unable to process the request of delete the user');
+  }
+};
+
 module.exports = {
   createUserServ,
   loginServ,
@@ -69,4 +85,5 @@ module.exports = {
   saveUpdateEnrollServ,
   signupInCourseServ,
   getOneUserServ,
+  deleteUserCourseServ,
 };

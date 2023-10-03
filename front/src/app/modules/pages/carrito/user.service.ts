@@ -28,6 +28,27 @@ export class UserService
             );
     }
 
+    incrementAttendance(userId: string, courseId: string)
+    {
+        return this.apiService.put(`/users/${userId}/courseatt/${courseId}`).pipe(
+            catchError(this.handleError<User>('getUser')),
+        );
+    }
+
+    changeEnroll(userId: string, courseId: string)
+    {
+        return this.apiService.put(`/users/${userId}/courseenroll/${courseId}`).pipe(
+            catchError(this.handleError<User>('getUser')),
+        );
+    }
+
+    deleteUserCourse(userId: string, courseId: string)
+    {
+        return this.apiService.delete(`users/deleteuserincourse/${userId}/${courseId}`).pipe(
+            catchError(this.handleError<User>('getUser')),
+        );
+    }
+
     private handleError<T>(operation = 'operation', result?: T)
     {
         return (error: any): Observable<T> =>

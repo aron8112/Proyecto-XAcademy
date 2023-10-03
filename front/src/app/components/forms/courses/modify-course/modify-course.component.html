@@ -24,6 +24,7 @@
                     </form>
                     <hr>
                     <form #modCourseStartDate="ngForm">
+<<<<<<< HEAD
                         <div class="d-flex flex-column">
                             <h4 class="input__label text-start">Fecha de inicio</h4>
                             <div class="d-flex flex-row">
@@ -37,9 +38,22 @@
                                     (click)="sendChanges(modCourseStartDate)">Modificar</button>
                             </div>
                         </div>
+=======
+                        <h4>Fecha de inicio</h4>
+                        <br>
+                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                            aria-describedby="Inicio" id="courseStartDate" [(ngModel)]="model.courseStartDate"
+                            #courseStartDate="ngModel" name="courseStartDate"
+                            value="{{course.courseStartDate | date:'dd-MM-yyyy' }}"
+                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseStartDate.invalid"
+                            (click)="sendStartDates(modCourseStartDate)">Modificar</button>
+>>>>>>> 0b86323728dd522d15e227ef07ec12eefc052ebf
                     </form>
                     <hr>
                     <form #modCourseEndDate="ngForm">
+<<<<<<< HEAD
                         <div class="d-flex flex-column">
                             <h4 class="input__label text-start">Fecha de Finalización</h4>
                             <div class="d-flex flex-row">
@@ -53,6 +67,19 @@
                                     (click)="sendChanges(modCourseEndDate)">Modificar</button>
                             </div>
                         </div>
+=======
+                        <h4>Fecha de Finalización</h4>
+                        <br>
+                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
+                            aria-describedby="Inicio" id="courseEndDate" [(ngModel)]="model.courseEndDate"
+                            #courseEndDate="ngModel" name="courseEndDate"
+                            value="{{course.courseEndDate | date:'dd-MM-yyyy' }}"
+                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+
+                        <br>
+                        <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseEndDate.invalid"
+                            (click)="sendEndDates(modCourseEndDate)">Modificar</button>
+>>>>>>> 0b86323728dd522d15e227ef07ec12eefc052ebf
                     </form>
                     <hr>
                     <form #moddescription="ngForm">

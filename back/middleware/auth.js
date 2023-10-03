@@ -80,7 +80,7 @@ const isAdminAndTeacherMdw = (req, res, next) =>
         return next(err);
       }
 
-      if (user.isTeacher && user.isAdmin === true) {
+      if (user.isTeacher || user.isAdmin === true) {
         return next();
       }
 

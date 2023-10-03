@@ -3,7 +3,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h3>Bienvenido {{user[0].firstName }} {{user[0].lastName}}</h3>
+        <h3>Bienvenido {{ user[0].firstName }} {{ user[0].lastName }}</h3>
       </div>
       <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
@@ -21,10 +21,9 @@
             <a class="nav-link" *ngIf="user[0].isAdmin" [routerLink]="['/publicaciones']">Modificar publicación</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" *ngIf="user[0].isAdmin || user[0].isTeacher" routerLink="/cursos/create">Asistencias</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" *ngIf="user[0].isAdmin" routerLink="/cursos/create">Pagos</a>
+            <a class="nav-link" *ngIf="user[0].isAdmin || user[0].isTeacher" routerLink="/cursos/liststudents">Listado
+              de
+              cursos y asistencias</a>
           </li>
         </ul>
       </div>
@@ -65,9 +64,11 @@
               <td>{{course.courseName}}</td>
               <td>{{course.schedule}}</td>
               <td>{{course.UserCourse.attendance}}</td>
-              <td *ngIf="course.UserCourse.enrolled === true">PAGADA</td>
-              <td *ngIf="course.UserCourse.enrolled === false">PENDIENTE</td>
-              <td *ngIf="course.UserCourse.enrolled === false"><button class="btn btn-secondary">Pagar</button></td>
+              <td>
+                <p *ngIf="course.UserCourse.enrolled === true">PAGADA</p>
+                <p *ngIf="course.UserCourse.enrolled === false">PENDIENTE</p>
+              </td>
+              <td><button *ngIf="course.UserCourse.enrolled === false" class="btn btn-secondary">Pagar</button></td>
             </tr>
           </table>
         </div>

@@ -34,8 +34,10 @@
                 <div *ngFor="let course of courses; let i = index" class="carousel-item" [ngClass]="{'active': i == 0}">
                     <img src="../../../../assets/sunset.jpg" class="d-block w-100" alt="imagen" style="height: 450px;">
                     <div class="carousel-caption d-none d-md-block">
-                        <h3>{{course.courseName}}</h3>
-                        <small>{{course.shortDescription}}</small>
+                        <a class="nav-link" [routerLink]="['/cursos/details', course.id]">
+                            <h3>{{course.courseName}}</h3>
+                            <small>{{course.shortDescription}}</small>
+                        </a>
                     </div>
                 </div>
             </div>
