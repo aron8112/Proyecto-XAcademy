@@ -1,13 +1,13 @@
 <main>
     <div class="container px-4" id="custom-cards">
-        <h2 class="pb-4 border-bottom">Cursos Disponibles</h2>
+        <h2 class="pb-4 border-bottom text-center fs-3 mt-4">Cursos Disponibles</h2>
         <div class="album py-5 bg-body-tertiary">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div *ngFor="let course of courses" class="card-group">
                         <div class="card rounded-4 shadow-lg">
                             <div class="card-header text-center pt-3">
-                                <h2 class="fw-bold fs-5">{{course.courseName}}</h2>
+                                <h2 class=" fs-5">{{course.courseName}}</h2>
                             </div>
                             <ul class="list-group list-group-flush"
                                 style="display:flex; justify-content: flex-start; align-content: center;">
