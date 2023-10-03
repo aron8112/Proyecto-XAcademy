@@ -5,94 +5,112 @@
         <div class="card text-center shadow px-0 w-75 mb-3"
             style="margin: 20px; display: flex; justify-content: center;">
             <div class="card-header">
-                <div class="card-header">
-                    <h1 class="card-title text-center">Modificar curso</h1>
+                <div class="card-header mt-2">
+                    <h1 class="card-title text-center fs-3 pt-3">Modificar curso</h1>
                 </div>
                 <div class="card-body">
                     <form #modCourseName="ngForm">
-                        <h4>Título del curso</h4>
-                        <input type="text" class="form-control" placeholder="Título" aria-label="Título"
-                            aria-describedby="Título" id="courseName" [(ngModel)]="model.courseName"
-                            #courseName="ngModel" name="courseName" value="{{course.courseName}}">
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseName.invalid"
-                            (click)="sendChanges(modCourseName)">Modificar</button>
+                        <div class="d-flex flex-column">
+                            <h4 class="input__label text-start">Título del curso</h4>
+                            <div class="d-flex flex-row">
+                                <input type="text" class="form-control input__field" placeholder="Título"
+                                    aria-label="Título" aria-describedby="Título" id="courseName"
+                                    [(ngModel)]="model.courseName" #courseName="ngModel" name="courseName"
+                                    value="{{course.courseName}}">
+                                <button class="button button--primary" type="button" [disabled]="modCourseName.invalid"
+                                    (click)="sendChanges(modCourseName)">Modificar</button>
+                            </div>
+                        </div>
                     </form>
                     <hr>
                     <form #modCourseStartDate="ngForm">
-                        <h4>Fecha de inicio</h4>
-                        <br>
-                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
-                            aria-describedby="Inicio" id="courseStartDate" [(ngModel)]="model.courseStartDate"
-                            #courseStartDate="ngModel" name="courseStartDate"
-                            value="{{course.courseStartDate | date:'dd-MM-yyyy' }}"
-                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseStartDate.invalid"
-                            (click)="sendChanges(modCourseStartDate)">Modificar</button>
+                        <div class="d-flex flex-column">
+                            <h4 class="input__label text-start">Fecha de inicio</h4>
+                            <div class="d-flex flex-row">
+                                <input type="text" class="form-control input__field" placeholder="Inicio"
+                                    aria-label="Inicio" aria-describedby="Inicio" id="courseStartDate"
+                                    [(ngModel)]="model.courseStartDate" #courseStartDate="ngModel"
+                                    name="courseStartDate" value="{{course.courseStartDate | date:'dd-MM-yyyy' }}"
+                                    pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+                                <button class="button button--primary" type="button"
+                                    [disabled]="modCourseStartDate.invalid"
+                                    (click)="sendChanges(modCourseStartDate)">Modificar</button>
+                            </div>
+                        </div>
                     </form>
                     <hr>
-
                     <form #modCourseEndDate="ngForm">
-                        <h4>Fecha de Finalización</h4>
-                        <br>
-                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
-                            aria-describedby="Inicio" id="courseEndDate" [(ngModel)]="model.courseEndDate"
-                            #courseEndDate="ngModel" name="courseEndDate"
-                            value="{{course.courseEndDate | date:'dd-MM-yyyy' }}"
-                            pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
-
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modCourseEndDate.invalid"
-                            (click)="sendChanges(modCourseEndDate)">Modificar</button>
+                        <div class="d-flex flex-column">
+                            <h4 class="input__label text-start">Fecha de Finalización</h4>
+                            <div class="d-flex flex-row">
+                                <input type="text" class="form-control input__field" placeholder="Inicio"
+                                    aria-label="Inicio" aria-describedby="Inicio" id="courseEndDate"
+                                    [(ngModel)]="model.courseEndDate" #courseEndDate="ngModel" name="courseEndDate"
+                                    value="{{course.courseEndDate | date:'dd-MM-yyyy' }}"
+                                    pattern="^([0-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-202[0-9]$">
+                                <button class="button button--primary" type="button"
+                                    [disabled]="modCourseEndDate.invalid"
+                                    (click)="sendChanges(modCourseEndDate)">Modificar</button>
+                            </div>
+                        </div>
                     </form>
                     <hr>
                     <form #moddescription="ngForm">
-                        <h4>Descripción del curso</h4>
-                        <textarea type="text" class="form-control" placeholder="Título" aria-label="Título"
-                            aria-describedby="Título" id="description" [(ngModel)]="model.description"
-                            #description="ngModel" name="description" value="{{course.description}}"></textarea>
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="moddescription.invalid"
-                            (click)="sendChanges(moddescription)">Modificar</button>
+                        <h4 class="input__label text-start">Descripción del curso</h4>
+                        <textarea type="text" class="form-control  input__field input__field--textarea"
+                            placeholder="Título" aria-label="Título" aria-describedby="Título" id="description"
+                            [(ngModel)]="model.description" #description="ngModel" name="description"
+                            value="{{course.description}}"></textarea>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="button button--primary" type="button" [disabled]="moddescription.invalid"
+                                (click)="sendChanges(moddescription)">Modificar</button>
+                        </div>
                     </form>
                     <hr>
                     <form #modshortDescription="ngForm">
-                        <h4>Descripción corta del curso</h4>
-                        <textarea type="text" class="form-control" placeholder="Título" aria-label="Título"
+                        <h4 class="input__label text-start">Descripción corta del curso</h4>
+                        <textarea type="text" class="form-control input__field input__field--textarea" placeholder="Título" aria-label="Título"
                             aria-describedby="Título" id="shortDescription" [(ngModel)]="model.shortDescription"
                             #shortDescription="ngModel" name="shortDescription"
                             value="{{course.shortDescription}}"></textarea>
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modshortDescription.invalid"
+                        <div class="d-flex justify-content-end mt-3">
+                        <button class="button button--primary" type="button" [disabled]="modshortDescription.invalid"
                             (click)="sendChanges(modshortDescription)">Modificar</button>
+                        </div>
                     </form>
                     <hr>
                     <form #modamountclasses="ngForm">
-                        <h4>Cantidad de clases</h4>
-                        <br>
-                        <input type="number" class="form-control" placeholder="Inicio" aria-label="Inicio"
-                            aria-describedby="Inicio" id="amountclasses" [(ngModel)]="model.amountclasses"
-                            #amountclasses="ngModel" name="amountclasses" value="{{course.amountclasses}}">
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modamountclasses.invalid"
-                            (click)="sendChanges(modamountclasses)">Modificar</button>
+                        <div class="d-flex flex-column">
+                            <h4 class="input__label text-start">Cantidad de clases</h4>
+                            <div class="d-flex flex-row">
+                                <input type="number" class="form-control input__field" placeholder="Inicio"
+                                    aria-label="Inicio" aria-describedby="Inicio" id="amountclasses"
+                                    [(ngModel)]="model.amountclasses" #amountclasses="ngModel" name="amountclasses"
+                                    value="{{course.amountclasses}}">
+                                <button class="button button--primary" type="button"
+                                    [disabled]="modamountclasses.invalid"
+                                    (click)="sendChanges(modamountclasses)">Modificar</button>
+                            </div>
+                        </div>
                     </form>
                     <hr>
                     <form #modschedule="ngForm">
-                        <h4>Horario de clases</h4>
-                        <br>
-                        <input type="text" class="form-control" placeholder="Inicio" aria-label="Inicio"
-                            aria-describedby="Inicio" id="schedule" [(ngModel)]="model.schedule" #schedule="ngModel"
-                            name="schedule" value="{{course.schedule}}">
-                        <br>
-                        <button class="btn btn-outline-secondary" type="button" [disabled]="modschedule.invalid"
-                            (click)="sendChanges(modschedule)">Modificar</button>
+                        <div class="d-flex flex-column">
+                            <h4 class="input__label text-start">Horario de clases</h4>
+                            <div class="d-flex flex-row">
+                                <input type="text" class="form-control input__field" placeholder="Inicio"
+                                    aria-label="Inicio" aria-describedby="Inicio" id="schedule"
+                                    [(ngModel)]="model.schedule" #schedule="ngModel" name="schedule"
+                                    value="{{course.schedule}}">
+                                <button class="button button--primary" type="button" [disabled]="modschedule.invalid"
+                                    (click)="sendChanges(modschedule)">Modificar</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
-                <div class="card-footer text-body-secondary">
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-secondary me-md-2" type="button"
+                <div class="card-footer text-body-secondary mt-3 ">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-2 pb-2">
+                        <button class="button button--primary" type="button"
                             [routerLink]="['/cursos']">Descartar</button>
                     </div>
                 </div>

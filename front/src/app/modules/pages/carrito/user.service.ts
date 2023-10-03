@@ -21,6 +21,7 @@ export class UserService
 
     getOneUser(id: Params): Observable<User>
     {
+        
         return this.apiService.get<User>(`/users/${id}`)
             .pipe(
                 catchError(this.handleError<User>('getUser')),

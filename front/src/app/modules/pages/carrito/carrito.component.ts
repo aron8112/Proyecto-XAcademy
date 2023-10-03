@@ -17,8 +17,6 @@ import { Icourses } from 'src/app/core/interfaces/Icourses';
 export class CarritoComponent implements OnInit
 {
   id: any
-
-
   user: any
   courses: any
   constructor(private userService: UserService,
@@ -30,18 +28,42 @@ export class CarritoComponent implements OnInit
   {
     this.activatedRoute.paramMap.subscribe(paramMap =>
     {
+      console.log(paramMap.get('id'))
       this.id = paramMap.get('id')
       this.getUser(this.authService.setUserId().id)
+      console.log(this.getUser(this.authService.setUserId().id))
     });
   }
 
   getUser(id: any): void
   {
+
     this.userService.getOneUser(id).subscribe(user =>
     {
+     
       this.user = user
+      
     })
   }
+  // getUser(id: any): void
+  // {
+  //   this.userService.getOneUser(id).subscribe({
+  //     next: (response) =>
+  //     {
+  //       this.user = response
+        
+  //     },
+  //     error: (error) =>
+  //     {
+  //       let errorMessage = 'An error occured retrieving data';
+  //       if (error)
+  //       {
+  //         errorMessage = `Error: code ${error.message}`;
+  //       }
+  //       console.log(errorMessage)
+  //     },
+  //   })
+  // }
 
   getCoursesByStudent(): void
   {
