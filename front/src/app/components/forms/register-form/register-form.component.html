@@ -7,7 +7,7 @@
                 <div class="col bg_sections bg d-none d-lg-block col-md-6 col-lg-6 col-xl-7 ">
                 </div>
                 <div class="col-md-6 offset-md-3">
-                    <div class="card text-center container-fluid bg-white shadow px-0">
+                    <div class="card text-center container-fluid bg-white shadow px-0 pt-4">
                         <!-- IMAGEN FONDO -->
                         <div class="text-center">
                             <!-- LOGOTIPO -->
@@ -20,46 +20,39 @@
                                     acceder a todos los <br>beneficios de la <br><b>Incubadora del N.O.C.</b></h2>
                                 <!-- LOGIN -->
                                 <form #form="ngForm">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-4">
-                                                <label for="firstName" class="form-label">Nombre</label>
-                                                <input type="text" class="form-control" name="firstName"
-                                                    placeholder="Nombre" [(ngModel)]="model.firstName" required>
+                                    <div class="div-input-container mb-3">
+                                        <div class="mb-3 input_div me-2">
+                                            <p class="input__label text-start">Nombre</p>
+                                            <input type="text" class="form-control input__field_double" name="firstName"
+                                                placeholder="Nombre" [(ngModel)]="model.firstName" required>
+                                        </div>
+                                        <div class="mb-3 input_div ms-2">
+                                            <p class="input__label text-start">Apellido</p>
+                                            <input type="text" class="form-control input__field_double" name="lastName"
+                                                placeholder="Apellido" [(ngModel)]="model.lastName" required>
+                                        </div>
+                                    </div>                                    
+                                        <div class="">
+                                            <p class="input__label text-start">Email</p>
+                                            <input type="email" class="form-control input__field long" name="email"
+                                                [(ngModel)]="model.email" placeholder="example@email.com"
+                                                #email="ngModel" required>
+                                            <div *ngIf="email.dirty || email.touched || email.invalid" class="alert">
+                                                <small *ngIf="email.errors?.['required'] && email.touched"
+                                                    class="alert alert-danger" role="alert">
+                                                    Debe ingresar un email.
+                                                </small>
+                                                <small *ngIf="email.errors?.['invalid'] && email.touched"
+                                                    class="alert alert-danger" role="alert">
+                                                    Debe ingresar un email válido.
+                                                </small>
                                             </div>
                                         </div>
-                                        <div class="col">
-                                            <div class="mb-4">
-                                                <label for="lastName" class="form-label">Apellido</label>
-                                                <input type="text" class="form-control" name="lastName"
-                                                    placeholder="Apellido" [(ngModel)]="model.lastName" required>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-4">
-                                                <label for="correo" class="form-label">Email</label>
-                                                <input type="email" class="form-control" name="email"
-                                                    [(ngModel)]="model.email" placeholder="example@email.com"
-                                                    #email="ngModel" required>
-                                                <div *ngIf="email.dirty || email.touched || email.invalid"
-                                                    class="alert">
-                                                    <small *ngIf="email.errors?.['required'] && email.touched"
-                                                        class="alert alert-danger" role="alert">
-                                                        Debe ingresar un email.
-                                                    </small>
-                                                    <small *ngIf="email.errors?.['invalid'] && email.touched"
-                                                        class="alert alert-danger" role="alert">
-                                                        Debe ingresar un email válido.
-                                                    </small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="mb-4">
-                                                <label for="password" class="form-label"> Password</label>
-                                                <input type="password" class="form-control" name="password"
+
+                                        <div class="div-input-container">
+                                            <div class="mb-4 input_div me-2">
+                                                <p class="input__label text-start"> Password</p>
+                                                <input type="password" class="form-control input__field_double" name="password"
                                                     placeholder="Password" required [(ngModel)]="model.password"
                                                     minlength="6" #password="ngModel" required>
                                                 <div *ngIf="password.dirty || password.touched" class="alert">
@@ -73,12 +66,10 @@
                                                     </small>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-4">
-                                                <label for="password2" class="form-label"> Confirmar password</label>
-                                                <input type="password2" class="form-control" name="password2"
-                                                    placeholder="Confirmar Password" required
+                                            <div class="mb-4 input_div ms-2">
+                                                <p class="input__label text-start"> Confirmar password</p>
+                                                <input type="password2" class="form-control input__field_double"
+                                                    name="password2" placeholder="Confirmar Password" required
                                                     [(ngModel)]="model.password2" minlength="6" #password2="ngModel"
                                                     required>
                                                 <div *ngIf="password.dirty || password.touched" class="alert">
@@ -99,11 +90,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="d-grid">
-                                        <button type="submit" name="submit" class="btn btn-primary"
-                                            (click)="signUp(form)" [disabled]="form.invalid">Registrar</button>
-                                    </div>
+                                        <div class="d-grid">
+                                            <button type="submit" name="submit" class="button button--primary"
+                                                (click)="signUp(form)" [disabled]="form.invalid">Registrar</button>
+                                        </div>
                                 </form>
                                 <br>
                                 <hr>
