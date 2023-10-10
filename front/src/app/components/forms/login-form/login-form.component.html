@@ -1,0 +1,76 @@
+<main>
+    <!-- SECCION LOGIN -->
+    <section class="main_section">
+        <div class="container-fluid" id="contentForm">
+            <!-- SECCION LOGIN -->
+            <div class="row align-items-stretch mt-4" style="display: flex; justify-content: center;">
+                <div class="col bg_sections bg d-none d-lg-block col-md-6 col-lg-6 col-xl-7 ">
+                </div>
+                <div class="col-md-6 offset-md-3">
+                    <div class="card text-center container-fluid bg-white shadow px-0">
+                        <!-- IMAGEN FONDO -->
+                        <div class="text-center">
+                            <!-- LOGOTIPO -->
+                            <img src="../../../../assets/345270431_766231688363871_4341753288289659002_n.jpg"
+                                width="100" alt="logotipo">
+                        </div>
+                        <div class="card-body">
+                            <div class="card-header">
+                                <h2 class="card-title" id="titleForm">Iniciar sesión en la Incubadora del NOC
+                                </h2>
+                            </div>
+                            <br>
+                            <!-- LOGIN -->
+                            <form #form="ngForm">
+                                <div class="mb-4">
+                                    <label for="correo" class="form-label">Email</label>
+                                    <input type="email" class="form-control" name="email" [(ngModel)]="model.email"
+                                        placeholder="example@email.com" #email="ngModel" required>
+                                    <div *ngIf="email.dirty || email.touched || email.invalid" class="alert">
+                                        <small *ngIf="email.errors?.['required'] && email.touched"
+                                            class="alert alert-danger" role="alert">
+                                            Debe ingresar un email.
+                                        </small>
+                                        <small *ngIf="email.errors?.['invalid'] && email.touched"
+                                            class="alert alert-danger" role="alert">
+                                            Debe ingresar un email válido.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="pass" class="form-label"> Password</label>
+                                    <input type="password" name="password" class="form-control"
+                                        [(ngModel)]="model.password" placeholder="123456" minlength="6"
+                                        #password="ngModel" required>
+                                    <div *ngIf="password.dirty || password.touched" class="alert">
+                                        <small *ngIf="password.errors?.['required']" class="alert alert-danger"
+                                            role="alert">
+                                            Por favor inserte su password.
+                                        </small>
+                                        <small *ngIf="password.errors?.['minlength']" class="alert alert-danger"
+                                            role="alert">
+                                            Recuerde que su password debe tener al menos 6 caracteres.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="d-grid">
+                                    <button type="button" name="submit" class="btn btn-primary" (click)="logIn(form)"
+                                        [disabled]="form.invalid">Iniciar
+                                        sesion</button>
+                                </div>
+                            </form>
+                            <br>
+                            <hr>
+                            <div class="card-footer text-body-secondary">
+                                <p>¿No tenés cuenta? <a class="link" aria-current="page"
+                                        routerLink='/signup'>Registrate</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </section>
+</main>
+<br>

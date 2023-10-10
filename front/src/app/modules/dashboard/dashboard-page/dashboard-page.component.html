@@ -1,1 +1,33 @@
-<p>Page works!</p>
+<div class="container px-4" style="margin: 20px;" *ngFor="let course of cursos">
+    <h1>{{course.courseName}}</h1>
+    <br />
+    <div *ngIf="!isEmpty(course.users)">
+        <table id="courses">
+            <tr>
+                <th>Alumno</th>
+                <th>Email</th>
+                <th>Asistencia</th>
+                <th>Matrícula</th>
+                <th *ngIf="id.isAdmin">Eliminar estudiante del curso</th>
+            </tr>
+            <tr *ngFor="let user of course.users">
+                <td>{{user.lastName}}, {{user.firstName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.UserCourse.attendance}} <button *ngIf="id.isTeacher || id.isAdmin" class="btn btn-secondary"
+                        (click)="incrementAtt(user.id, course.id)">
+                        + </button></td>
+                <td>
+                    <button *ngIf="id.isTeacher || id.isAdmin && user.UserCourse.enrolled === false"
+                        class="btn btn-secondary" (click)="enrollChange(user.id, course.id)">
+                        Pendiente - click para cambiar </button>
+                    <p *ngIf="user.UserCourse.enrolled === true "> OK </p>
+                </td>
+                <td *ngIf="id.isAdmin"><button class="btn btn-danger"
+                        (click)="deleteUserInCourse(user.id, course.id)">Dar de baja</button></td>
+            </tr>
+        </table>
+    </div>
+    <div *ngIf="isEmpty(course.users)">
+        <p>Todavía no hay estudiantes inscriptos</p>
+    </div>
+</div>

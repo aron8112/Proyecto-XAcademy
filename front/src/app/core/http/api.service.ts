@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class ApiService
+{
   /**
    * Base URL for all requests made through this
    * service.
@@ -17,14 +18,15 @@ export class ApiService {
    * HTTP headers applied to all requests made through this
    * service.
    */
-   public httpHeaders = new HttpHeaders();
+  public httpHeaders = new HttpHeaders();
 
   /**
    * Creates a new HttpApiService instance and initializes it.
    */
   constructor(
     public http: HttpClient,
-  ) {
+  )
+  {
     this.apiUrl = environment.API_URL;
     this.setDefaultHeaders();
   }
@@ -33,7 +35,8 @@ export class ApiService {
    * Sets the default headers and values for all requests made
    * through this service.
    */
-  public setDefaultHeaders(): void {
+  public setDefaultHeaders(): void
+  {
     this.httpHeaders = new HttpHeaders();
     this.httpHeaders
       .set('Content-Type', 'application/json')
@@ -43,11 +46,13 @@ export class ApiService {
   /**
    * Returns all headers and values currently beign used by the service.
    */
-  public getHeaders(): HttpHeaders {
+  public getHeaders(): HttpHeaders
+  {
     return this.httpHeaders;
   }
 
-  public download(url: string, params?: HttpParams): Observable<Object> {
+  public download(url: string, params?: HttpParams): Observable<Object>
+  {
     const opts = {
       headers: this.httpHeaders,
       params: (params ? params : null) as HttpParams,
@@ -55,7 +60,8 @@ export class ApiService {
       responseType: 'text' as 'text'
     };
 
-    if (params) {
+    if (params)
+    {
       opts.params = params;
     }
 
@@ -69,7 +75,8 @@ export class ApiService {
    * @param headerName The header name.
    * @param headerValue Provides the value to set or overide for a given name.
    */
-  public setHeader(headerName: string, headerValue: string | string[]): void {
+  public setHeader(headerName: string, headerValue: string | string[]): void
+  {
     this.httpHeaders = this.httpHeaders.set(headerName, headerValue);
   }
 
@@ -79,10 +86,13 @@ export class ApiService {
    *
    * @param headerName The header name.
    */
-  public deleteHeader(headerName: string): void {
-    if (this.httpHeaders.has(headerName)) {
+  public deleteHeader(headerName: string): void
+  {
+    if (this.httpHeaders.has(headerName))
+    {
       this.httpHeaders = this.httpHeaders.delete(headerName);
-    } else {
+    } else
+    {
       console.warn('Tried to delete a header that does not exist.');
     }
   }
@@ -96,13 +106,15 @@ export class ApiService {
    *
    * @return An `Observable` of the response body as a JSON object.
    */
-  public get<T>(url: string, params?: HttpParams): Observable<T> {
+  public get<T>(url: string, params?: HttpParams): Observable<T>
+  {
     const opts = {
       headers: this.httpHeaders,
       params: (params ? params : null) as HttpParams,
     };
 
-    if (params) {
+    if (params)
+    {
       opts.params = params;
     }
 
@@ -112,7 +124,8 @@ export class ApiService {
   public getFile<T>(
     url: string,
     params: HttpParams | undefined = undefined
-  ): Observable<T> {
+  ): Observable<T>
+  {
     const headers = this.httpHeaders.delete('Content-Type');
 
     const opts = {
@@ -121,7 +134,8 @@ export class ApiService {
       responseType: 'blob' as any,
     };
 
-    if (params) {
+    if (params)
+    {
       opts.params = params;
     }
 
@@ -137,14 +151,19 @@ export class ApiService {
    *
    * @return An `Observable` of the response, with the response body as a JSON object.
    */
-  public post<T>(url: string, body?: any): Observable<T> {
+  public post<T>(url: string, body?: any): Observable<T>
+  {
     let postBody = body;
     const opts = {
       headers: this.httpHeaders,
     };
 
-    if (!postBody) {
-      postBody = {};
+    if (!postBody)
+    {
+      postBody = {
+        // email: "admin1",
+        // password: "iamadmin1"
+      };
     }
 
     return this.http.post<T>(this.apiUrl + url, postBody, opts);
@@ -159,13 +178,15 @@ export class ApiService {
    *
    * @return An `Observable` of the response, with the response body as a JSON object.
    */
-  public put<T>(url: string, body?: any): Observable<T> {
+  public put<T>(url: string, body?: any): Observable<T>
+  {
     let putBody = body;
     const opts = {
       headers: this.httpHeaders,
     };
 
-    if (!putBody) {
+    if (!putBody)
+    {
       putBody = {};
     }
 
@@ -180,7 +201,8 @@ export class ApiService {
    *
    * @return An `Observable` of the response, with the response body of type `Object`.
    */
-  public delete<T>(url: string): Observable<T> {
+  public delete<T>(url: string): Observable<T>
+  {
     const opts = {
       headers: this.httpHeaders,
     };

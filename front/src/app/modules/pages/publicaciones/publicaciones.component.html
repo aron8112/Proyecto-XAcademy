@@ -1,0 +1,64 @@
+<main>
+    <br><br>
+    <div class="container px-4" id="custom-cards">
+        <h2 class="pb-4 border-bottom">Publicaciones Disponibles</h2>
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <!-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"> -->
+                <div class="row flex-column">
+                    <div *ngFor="let publication of publications" class="">
+                        <!-- <div class="card rounded-4 shadow-lg">
+                            <div class="card-header text-center">
+                                <h3 class="fw-bold">{{publication.title}}</h3>
+                            </div>
+                            <ul class="list-group list-group-flush"
+                                style="display:flex; justify-content: flex-start; align-content: center;">
+                                <li class="list-group-item">{{publication.description}}</li>
+                                <li class="list-group-item"><u>Día:</u> {{publication.start_date}}</li>
+                            </ul>
+                            <div class="card-body">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <a class="btn btn-primary me-md-2" [routerLink]="['/publicaciones/details', publication.id]">Leer
+                                        más</a>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!----------------------------------------------------------------------->
+                        <!-- <div class="card">
+                            <div class="card__corner"></div>
+                            <div class="card__img">
+                                <span class="card__span">Category</span>
+                            </div>
+                            <div class="card-int">
+                                <p class="card-int__title">{{publication.title}}</p>
+                                <p class="excerpt">{{publication.description}}</p>
+                                <a class="btn btn-primary me-md-2"
+                                    [routerLink]="['/publicaciones/details', publication.id]">Leer
+                                    más</a>>
+                            </div>
+                        </div> -->
+                        <div class="card">
+                            <div class=" d-flex flex-row">
+                              <!-- <div class="col-5 col-sm-4">
+                                <img src="assets/images/bs-images/img-3x4.png" class="img-fluid w-100" alt="card-horizontal-image">
+                              </div> -->
+                              <div class="card__img">
+                                <span class="card__span">Novedad</span>
+                            </div>
+                              <div class="col-7 col-sm-8 d-flex align-items-center">
+                                <div class="card-body" >
+                                  <h5 class="card-title fs-5">{{publication.title}}</h5>
+                                  <p class="card-text">{{publication.description}}</p>
+                                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                  <button class="card-int__button" [routerLink]="['/publicaciones/details', publication.id]"><a class="btn">Leer
+                                    más</a></button>                                
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

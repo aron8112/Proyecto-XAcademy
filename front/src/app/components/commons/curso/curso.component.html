@@ -1,0 +1,46 @@
+<div class="col-md-10" style="margin: 20px; display: flex; justify-content: center;">
+  <div class="card mb-10 rounded-4 shadow-lg" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="../../../../assets/fondo-curso.jpg" class="img-fluid rounded-start" alt="...">
+        <img src="../../../../assets/fondo-curso.jpg" class="img-fluid rounded-start" alt="...">
+        <img src="../../../../assets/fondo-curso.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h1 class="card-title">{{course.courseName}}</h1>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary" type="button" *ngIf="isTeacherOrAdmin"
+              [routerLink]="['/cursos/modifcourse', course.id]">Modificar</button>
+            <a class="btn btn-danger" type="a" *ngIf="isAdmin" (click)="delete(course.id)">Eliminar</a>
+          </div>
+          <hr>
+          <h4 class="card-text">Descripción del curso</h4>
+          <p class="card-text">{{course.description}}</p>
+          <hr>
+          <h4 class="card-text">Fechas importantes del curso</h4>
+          <p class="card-text"><u>Comienzo:</u> {{course.courseStartDate | date:'dd-MM-yyyy'}}</p>
+          <p class="card-text"><u>Finalización:</u> {{course.courseEndDate | date:'dd-MM-yyyy'}}</p>
+          <p class="card-text"><u>Cursado:</u> {{course.schedule}}</p>
+          <hr>
+          <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+        </div>
+        <div class="card-footer">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary me-md-2" type="button" [routerLink]="['/cursos']">Volver</button>
+
+            <button *ngIf="!isAdmin" class="btn btn-primary" type="button" (click)="registerInCourse()"
+              [disabled]="!(isAuth() | async )">Inscribirse</button>
+          </div>
+          <hr>
+          <div class="d-grid gap-2">
+            <small *ngIf="!(isAuth() | async)" class="alert alert-danger alert-dismissible fade show" role="alert">
+              Registrate para anotarte <a class="btn btn-primary" routerLink="/login">AQUÍ</a>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
