@@ -2,3 +2,72 @@
     padding: 15px;
     border-radius: 20%;
 }
+
+.bg_sections{
+    height: auto;
+    background-color: aqua;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+  }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+  }
+
+  .button {
+    font: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s ease;
+  }
+  
+  .button--primary {
+    background-color: #007dab;
+    color: #FFF;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .button--primary:hover {
+    background-color: #006489;
+  }
+
+  .button-secondary {
+    background-color: #4c565a;
+    color: #FFF;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+
+  .button-secondary:hover {
+    background-color: #2d2f30;
+  }
+
+  .button--danger {
+    background-color: #bb350d;
+    color: #FFF;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+  
+  .button--danger:hover {
+    background-color: #70210d;
+  }
+  
+  a{
+    text-decoration: none;
+  }

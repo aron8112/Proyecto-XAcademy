@@ -13,6 +13,7 @@ export class PublicationsService
 
     getAllPublications(): Observable<Ipublication[]>
     {
+        
         return this.apiService.get<Ipublication[]>('/publications/all')
             .pipe(
                 catchError(this.handleError<Ipublication[]>('getPublications', [])),
