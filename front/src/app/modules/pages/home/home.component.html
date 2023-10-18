@@ -1,25 +1,43 @@
 <main>
-    <!-- SECCION LOGIN -->
-    <!-- <section class="main_section">
-        <div class="container-fluid bg-white shadow px-0" id="contentForm">
-            
-            <div class="row align-items-stretch mt-4">
-               
-                <div class="col bg_sections bg d-none d-lg-block col-md-6 col-lg-6 col-xl-7 ">
-                </div>
-                <div class="col bg-white p-5">
-                    <div *ngIf="mostrarDiv;else templateName">
-                        <app-login-form [estado]="this.mostrarDiv" (newItemEvent)="cambiar($event)"></app-login-form>
-                    </div>
-                    <ng-template #templateName>
-                        <app-register-form [estado]="this.mostrarDiv"
-                            (newItemEvent)="cambiar($event)"></app-register-form>
-                    </ng-template>
-                </div>
+    <!-- SECCION HERO -->
+    <section>
+        <div class="container-fluid img-container">
+            <img src="../../../../assets/incubadora.png" class="img-fluid img "  alt="home">  
+        </div> 
+    </section>
+    <section>
+        <div class="container-fluid ms-5">
+            <div class="row mt-5 mb-5">
+              <div class="col-sm-9 ps-5 text-container">
+                <h2>Sobre la incubadora del N.O.C !!</h2>    
+                <p class="text-justify"><strong>¡Hola!</strong> <br><br>
+                    Somos una empresa que apoya a emprendedores, brindándoles herramientas para alcanzar el éxito. 
+                    Incubadora del NOC te brindara las herramientas que estás necesitando para hacer realidad tus sueños, asesorandote sobre todos los temas indispensables para que tú emprendimiento crezca. <br>
+                    <br>Nos encontramos en Mitre 757.</p>
+              </div>
+              <div class="col-sm-2 ">
+                <img src="../../../../assets/340339769_6254340777976086_2515298345645346808_n.webp" class="img-thumbnail  img-r" alt="">
+              </div>
             </div>
-        </div>
-    </section> -->
-    <section style="margin: 20px;">
+          </div>
+          
+          <div class="container-fluid bg-grey pt-5 pb-5 mb-5 ps-4">
+            <div class="row" >
+              <div class="col-sm-2 ">
+                <img src="../../../../assets/340499064_137705415916771_8637586137884970163_n.webp" class="img-thumbnail ms-5 img-r" alt="">
+              </div>
+              <div class="col-sm-9 ps-5 text-container ms-3">
+                <h2 class="">Ofrecemos una amplia variedad de capacitaciones y seminarios</h2>    
+                <p class="text-justify">Y ademas otros cursos y capacitaciones para que puedas lograr las metas del emprendedor !
+                <strong>Mira nuestros cursos !!</strong> </p>
+              </div>
+            </div>
+          </div>
+          
+    </section>
+
+
+    <!-- <section style="margin: 20px;">
         <h2>Cursos disponibles</h2>
         <hr>
         <div id="showAllCourses" class="carousel slide" data-bs-ride="carousel">
@@ -51,5 +69,5 @@
                 <span class="visually-hidden">Siguiente</span>
             </button>
         </div>
-    </section>
+    </section> -->
 </main>
