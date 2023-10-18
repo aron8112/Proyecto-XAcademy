@@ -8,7 +8,7 @@ const { userController } = require('../controllers');
 // user routes
 // ADMIN ONLY
 router.get('/all', isAdminMdw, userController.getAllUserCont);
-router.delete('/deleteuserincourse/:userid/:courseid', isAdminMdw, userController.deleteUserInCourse);
+router.delete('/:userid/deleteuserincourse/:courseid', isAdminMdw, userController.deleteUserInCourse);
 
 // EVERYONE CAN ACCESS
 router.post('/signup', userController.createUserCont);
