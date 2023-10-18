@@ -2,8 +2,10 @@
   <main style="margin: 20px; display: flex; justify-content: center;">
 
     <div class="card">
-      <div class="card-header">
-        <h3>Bienvenido {{ user[0].firstName }} {{ user[0].lastName }}</h3>
+      <div class="card-header text-center">
+        <h3>Bienvenido</h3>
+        <br />
+        <h1>{{ user[0].firstName }} {{ user[0].lastName }}</h1>
       </div>
       <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
@@ -51,26 +53,28 @@
               aria-label="Recipient's user[0]name" aria-describedby="button-addon2" value="{{user[0].email}}">
             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cambiar</button>
           </div>
-          <h3 class="card-title">Cursos</h3>
-          <table id="coursesCSS">
-            <tr>
-              <th>Curso</th>
-              <th>Horario</th>
-              <th>Asistencias</th>
-              <th>Matrícula</th>
-              <th></th>
-            </tr>
-            <tr *ngFor="let course of user[0].Courses">
-              <td>{{course.courseName}}</td>
-              <td>{{course.schedule}}</td>
-              <td>{{course.UserCourse.attendance}}</td>
-              <td>
-                <p *ngIf="course.UserCourse.enrolled === true">PAGADA</p>
-                <p *ngIf="course.UserCourse.enrolled === false">PENDIENTE</p>
-              </td>
-              <td><button *ngIf="course.UserCourse.enrolled === false" class="btn btn-secondary">Pagar</button></td>
-            </tr>
-          </table>
+          <div *ngIf="!user[0].isAdmin">
+            <h3 class="card-title">Cursos</h3>
+            <table id="coursesCSS">
+              <tr>
+                <th>Curso</th>
+                <th>Horario</th>
+                <th>Asistencias</th>
+                <th>Matrícula</th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let course of user[0].Courses">
+                <td>{{course.courseName}}</td>
+                <td>{{course.schedule}}</td>
+                <td>{{course.UserCourse.attendance}}</td>
+                <td>
+                  <p *ngIf="course.UserCourse.enrolled === true">PAGADA</p>
+                  <p *ngIf="course.UserCourse.enrolled === false">PENDIENTE</p>
+                </td>
+                <td><button *ngIf="course.UserCourse.enrolled === false" class="btn btn-secondary">Pagar</button></td>
+              </tr>
+            </table>
+          </div>
         </div>
 
 

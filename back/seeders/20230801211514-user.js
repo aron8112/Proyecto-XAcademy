@@ -9,8 +9,8 @@ module.exports = {
   async up(queryInterface, _Sequelize) {
     await queryInterface.bulkInsert('Users', [{
       id: crypto.randomUUID(),
-      firstName: 'Admin1',
-      lastName: '',
+      firstName: 'Admin',
+      lastName: 'Gonzalez',
       email: 'admin1@gmail.com',
       password: await bcrypt.hash(
         'imadmin1',
@@ -23,8 +23,8 @@ module.exports = {
     },
     {
       id: crypto.randomUUID(),
-      firstName: 'Admin2',
-      lastName: '',
+      firstName: 'Admin',
+      lastName: 'Perez',
       email: 'admin2@gmail.com',
       password: await bcrypt.hash(
         'imadmin2',
@@ -37,8 +37,8 @@ module.exports = {
     },
     {
       id: crypto.randomUUID(),
-      firstName: 'Teacher1',
-      lastName: 'One',
+      firstName: 'Teacher',
+      lastName: 'Juan Valdez',
       email: 'teacher1@gmail.com',
       password: await bcrypt.hash(
         'imteacher1',
@@ -51,8 +51,8 @@ module.exports = {
     },
     {
       id: crypto.randomUUID(),
-      firstName: 'Teacher2',
-      lastName: 'Two',
+      firstName: 'Teacher',
+      lastName: 'Silvia Ocampo',
       email: 'teacher2@gmail.com',
       password: await bcrypt.hash(
         'imteacher2',
@@ -65,8 +65,8 @@ module.exports = {
     },
     {
       id: crypto.randomUUID(),
-      firstName: 'student1',
-      lastName: 'Onestudent',
+      firstName: 'Juan Ignacio',
+      lastName: 'García',
       email: 'student1@gmail.com',
       password: await bcrypt.hash(
         'imstudent1',
@@ -79,8 +79,8 @@ module.exports = {
     },
     {
       id: crypto.randomUUID(),
-      firstName: 'student2',
-      lastName: 'Twostudent',
+      firstName: 'Juana Mía',
+      lastName: 'Perez',
       email: 'student2@gmail.com',
       password: await bcrypt.hash(
         'imstudent2',
@@ -90,7 +90,78 @@ module.exports = {
       isTeacher: false,
       createdAt: new Date(),
       updatedAt: new Date(),
-    }], {});
+    },
+    {
+      id: crypto.randomUUID(),
+      firstName: 'Anahí',
+      lastName: 'Rodriguez',
+      email: 'student2@gmail.com',
+      password: await bcrypt.hash(
+        'imstudent3',
+        10,
+      ),
+      isAdmin: false,
+      isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: crypto.randomUUID(),
+      firstName: 'Leila',
+      lastName: 'Rossi',
+      email: 'student2@gmail.com',
+      password: await bcrypt.hash(
+        'imstudent4',
+        10,
+      ),
+      isAdmin: false,
+      isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: crypto.randomUUID(),
+      firstName: 'Francisco',
+      lastName: 'Guerrero',
+      email: 'panchi@gmail.com',
+      password: await bcrypt.hash(
+        'eramedico',
+        10,
+      ),
+      isAdmin: false,
+      isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: crypto.randomUUID(),
+      firstName: 'Lucas',
+      lastName: 'Salinas',
+      email: 'lucas@gmail.com',
+      password: await bcrypt.hash(
+        'esveterinario',
+        10,
+      ),
+      isAdmin: false,
+      isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: crypto.randomUUID(),
+      firstName: 'Laura',
+      lastName: 'Triviño',
+      email: 'lauratriv@gmail.com',
+      password: await bcrypt.hash(
+        'espaleontologa',
+        10,
+      ),
+      isAdmin: false,
+      isTeacher: false,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    ], {});
   },
 
   async down(queryInterface, Sequelize) {

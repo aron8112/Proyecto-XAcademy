@@ -60,7 +60,7 @@ export class DashboardPageComponent
     this.userService.incrementAttendance(userId, courseId).subscribe({
       next: (response) =>
       {
-        alert('Asistencia +1')
+        this.getallws()
       },
       error: (error) =>
       {
@@ -81,8 +81,7 @@ export class DashboardPageComponent
     this.userService.changeEnroll(userId, courseId).subscribe({
       next: (response) =>
       {
-        alert('Estado de matrícula cambiado')
-        console.log(response)
+        this.getallws()
       },
       error: (error) =>
       {
@@ -103,8 +102,7 @@ export class DashboardPageComponent
     this.userService.deleteUserCourse(userid, courseid).subscribe({
       next: (response) =>
       {
-        alert('Se ha dado de baja el estudiante del curso')
-        console.log(response)
+        this.getallws()
       },
       error: (error) =>
       {
